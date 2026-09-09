@@ -1,0 +1,99 @@
+{
+ "id": "08",
+ "source": "Geothermal energy basic training part 8",
+ "language": "en",
+ "engine": "whisper-base-onnx",
+ "duration": 396.1,
+ "segments": [
+  {
+   "start": 0,
+   "end": 28,
+   "text": "And now we've reached the eight in last part of this education day, and it is about thermal response test. Right, so we've talked about the ground thermal conductivity, and I've so far sort of pretended that the ground is very homogeneous. So once you know the thermal conductivity of a rock material, it's going to be that throughout the...",
+   "rms": 0.0747
+  },
+  {
+   "start": 28,
+   "end": 56,
+   "text": "the profile of the borehole, but that's really true. In crystalline rock it's often true, but in sedimentary rock or more complex geology it is quite common that the summer conductivity of the ground varies with depth because there are different materials and different coarseness of the material and so on. So how do you treat that when you want",
+   "rms": 0.0783
+  },
+  {
+   "start": 56,
+   "end": 84,
+   "text": "to do a design. How can you handle thermoconductivity of one value between 10 and 90 meters and another one between 90 and 170 meters? How do you do that? Do you do the average or how do you how do you even know? For a single borehole it's no biggie really. You just make an estimation and then you drill some more x-picks.",
+   "rms": 0.0678
+  },
+  {
+   "start": 84,
+   "end": 112,
+   "text": "of borehole meters. But for larger systems it's actually an issue. So then what do you do? Well the only thing you're interested in from the design point of view is actually the average some connectivity of the entire along the entire borehole profile. You're not interested in if it's varies over the profile. And that is exactly what you can measure.",
+   "rms": 0.0674
+  },
+  {
+   "start": 112,
+   "end": 140,
+   "text": "or estimate by using a thermal response test equipment, a mobile thermal response test equipment. This tool was developed in the middle of the 1990s, and I was part of that development. It's not my invention, but I was lucky enough to be part of the development of this method. So a thermal response test or a TRT measures the thermal response",
+   "rms": 0.0739
+  },
+  {
+   "start": 140,
+   "end": 168,
+   "text": "of the ground to a known heat pulse, constant heat pulse. And it will give you information about the effective ground thermal conductivity. So that doesn't mean that it's the exact ground thermal conductivity, the effective ground thermal conductivity of the ground along the borehole. As a bonus, it will also give you information about the undisturbed ground temperature at that specific place and the borehole thermal",
+   "rms": 0.0707
+  },
+  {
+   "start": 168,
+   "end": 196,
+   "text": "resistance of that specific borne-heat exchanger. So most of the thermal response test units that are used, use heating to heat the fluid. Some also use cooling, but that means that the thermal response test measurement is more like a cooling system than a heating system. And this will actually cause a little difference in",
+   "rms": 0.0711
+  },
+  {
+   "start": 196,
+   "end": 224,
+   "text": "the measurements results compared to the actual operation conditions. So one has to be aware of that. Also when you do a thermal response test measurement you have to make sure that there is turbulence flow, not too much, but it has to be a turbulent flow inside the TRT measurements. You're not doing it with a laminar flow. Right. So here is the basic principle. A thermal response test.",
+   "rms": 0.0711
+  },
+  {
+   "start": 224,
+   "end": 252,
+   "text": "The basic principle of the measurement is that you have your borehole that you will use in your system. You have the borehole heat exchanger installed with a piping and the fluid and everything in the borehole feeling. And then you connect it to a circulation pump at a heater of some kind with a known capacity, a flow meter and two temperature sensors in less than outlet.",
+   "rms": 0.0752
+  },
+  {
+   "start": 252,
+   "end": 280,
+   "text": "to circulate the fluid and to heat the fluid and then you'll get a curve that looks something like the right curves on the right side. That will show the temperature development over a certain number of times which is at least 60 hours. Otherwise you won't measure the ground, you'll just measure the borehole itself. So the idea is that if you have a good thermokonactivity in the ground, that means a high thermokonactivity",
+   "rms": 0.0715
+  },
+  {
+   "start": 280,
+   "end": 308,
+   "text": "your temperature curve will be flat like the granite example. If you have a bad thermal, or low thermal conductivity of the ground, you will have a steeper curve. The temperature will increase more of a time like the shale curve example. And then you'll get the bonus for the starting point of the curve gives information about the borehole thermal resistance because that is the gap. The temperature drops sort of thing between the",
+   "rms": 0.0671
+  },
+  {
+   "start": 308,
+   "end": 336,
+   "text": "fluid and the borehole wall. So that's that if the curve is high on a high level, but the same shape it means that you have a high thermal condo, thermal resistance if it's on a low level with the same shape, it means that you have a low thermal resistance in the borehole. There are many types of thermal response test equipment. There is no patent on the system so you can build it.",
+   "rms": 0.0781
+  },
+  {
+   "start": 336,
+   "end": 364,
+   "text": "It's a simple principle. And it has many shapes. If you're interested in how they are built in different countries, you can look at this webpage, thermoresponstest.org, and get examples there from various countries. Okay, to sum this up, the ground is often in homogeneous along the borehole steps. It doesn't matter so much for a single borehole, but if you have a multiple borehole, the same more than eight or ten boreholes,",
+   "rms": 0.0684
+  },
+  {
+   "start": 364,
+   "end": 392,
+   "text": "then this may affect the design of your entire world system. So then you need to find the effective overall ground thermal conductivity that represents the entire world that's ground-performed. And then you can use thermal response test. A mobile thermal response test equipment to measure the ground thermal response and get information about the effective ground thermal conductivity, the undisturbed ground temperature.",
+   "rms": 0.0742
+  },
+  {
+   "start": 392,
+   "end": 396,
+   "text": "and the borehole summon resistance as a bonus.",
+   "rms": 0.0434
+  }
+ ]
+}

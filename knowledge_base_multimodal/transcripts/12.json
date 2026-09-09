@@ -1,0 +1,789 @@
+{
+ "id": "12",
+ "source": "Pressure drop calculation tool and 4x32 (demo)",
+ "language": "en",
+ "engine": "whisper-base-onnx",
+ "duration": 3619.8,
+ "segments": [
+  {
+   "start": 0,
+   "end": 28,
+   "text": "Okay. Welcome to this introduction. It's not meant to be a proper cleaning session, but an introduction to the new calculation to calculate the pressure drop that we will have on our webpage.",
+   "rms": 0.0968
+  },
+  {
+   "start": 28,
+   "end": 56,
+   "text": "start by sharing my screen and get the presentation running. Good. So we will record this meeting just so that if somebody wants to go back and see",
+   "rms": 0.094
+  },
+  {
+   "start": 56,
+   "end": 84,
+   "text": "what we said have the opportunity to add. So let's do it like we did yesterday on a single training session that we gather all questions that you have in the chat and then we could take them after presentation. I will ask some questions during the presentation and then at least somebody needs to",
+   "rms": 0.1176
+  },
+  {
+   "start": 84,
+   "end": 112,
+   "text": "I'm new to answer the questions. But first, I would take a step back and recap a little bit about what I showed in the movie link meeting that we had earlier this year. And if you remember, we had this picture in that meeting also.",
+   "rms": 0.105
+  },
+  {
+   "start": 112,
+   "end": 140,
+   "text": "The idea is that we are going from this Excel file to calculate the pressure drop into this web-based app that we will have on our web page. First, the recap of what pressure drop is and how it affects the system. The pressure drop in our",
+   "rms": 0.1052
+  },
+  {
+   "start": 140,
+   "end": 168,
+   "text": "flow system like our connectors is an energy loss that is created due to friction and resistance within the pipe and the components like valves and other things in the geothermal system. And this affects the flow.",
+   "rms": 0.1049
+  },
+  {
+   "start": 168,
+   "end": 196,
+   "text": "because the flow is driven by pressure. We need to have different pressures within the system to get the fluid moving and the pump circulation point that we have in the system. The pump is creating the pressure and this",
+   "rms": 0.0986
+  },
+  {
+   "start": 196,
+   "end": 224,
+   "text": "pressure is sort of eaten up or used up by the pressure drop within the pipes due to friction. And the pump then needs to overcome this. It needs to add more power to handle this pressure drop. And if it can't add more power, then the result will be that",
+   "rms": 0.1027
+  },
+  {
+   "start": 224,
+   "end": 252,
+   "text": "flow rate will be lower. So the flow of the fluid will be slower and slower. And this is something that we could see in this graph of the circulation pump. So on the Y axis here, we have available pressure and it's measured in kilo Pascal.",
+   "rms": 0.1131
+  },
+  {
+   "start": 252,
+   "end": 280,
+   "text": "x-axis we have flow in liters per second and all of these red lines they are representing different power usage of the circulation pump. So the bottom one here for instance shows that this is how the pressure that pump could deliver when it's running of 40%",
+   "rms": 0.1034
+  },
+  {
+   "start": 280,
+   "end": 308,
+   "text": "of its capacity and the upper one is when it's running at 100% of its capacity. So just to make an example, if we would like to have three liters per second in the flow. And then we see that the pump could handle 40 kilopascal.",
+   "rms": 0.101
+  },
+  {
+   "start": 308,
+   "end": 336,
+   "text": "if it's running at 80% of its capacity. If the pressure report to increase, let's say to 80 or sorry 60 kilopascal, then we need to move the arrow a little bit up until we are at 60 kilopascal. And then we still see that the pump could deliver this flow rate, but the",
+   "rms": 0.096
+  },
+  {
+   "start": 336,
+   "end": 364,
+   "text": "the pump needs to run at close to 100%. If the pressure drop would increase even more, let's say to 100 kilopascal, that means that we are up here. And then we could see that the pump no longer can handle that pressure drop. And the result will be that we need to follow the line.",
+   "rms": 0.1002
+  },
+  {
+   "start": 364,
+   "end": 392,
+   "text": "to the left until we come to this point here. So we could see that the pump curve could handle 100 kilopascal. But as a result, the flow rate will decrease to 2.2 or something like that instead of 3 liters that we wanted from the beginning. Okay, so that was a little bit of a recap on how",
+   "rms": 0.0987
+  },
+  {
+   "start": 392,
+   "end": 420,
+   "text": "the pressure drop effects flow rate in the circulation pulse. Now I have made some different scenarios, different examples on systems that we calculate. So I've started with the most simple ones.",
+   "rms": 0.0995
+  },
+  {
+   "start": 420,
+   "end": 448,
+   "text": "that we could think of in a geothermal system, and that it's one single house with one borehole. So what do we need to know when we are calculating this threshold? First of all, we need to know some distances. We need to know how long is the distance from the house to the top of the borehole.",
+   "rms": 0.1114
+  },
+  {
+   "start": 448,
+   "end": 476,
+   "text": "to know the depth of the bottle or the borehole heat exchanger. This short was something that Signehild talked about yesterday, but this is just another name for the collector or the probe. We also need to know the dimension of these pipes. We need to know the flow rate. How fast is the",
+   "rms": 0.1078
+  },
+  {
+   "start": 476,
+   "end": 504,
+   "text": "fluid going through the pipes and we also need to know what kind of fluid already comes from. And now I will jump a little bit back and forth between the presentation and the actual tool that we are showing. So I will shift that to our webpage and where do we find this app that we are talking about?",
+   "rms": 0.1023
+  },
+  {
+   "start": 504,
+   "end": 532,
+   "text": "For now, it's only available in the group page and the Swedish page. But the plan is that we will put this on all web pages within a week. Is that correct, Michael? Yes, this lifting is a thumb up. If you put your",
+   "rms": 0.1052
+  },
+  {
+   "start": 532,
+   "end": 560,
+   "text": "mouse over infrastructure service, then you could find calculation, and then you will have three different options. You could calculate move with time, you could calculate the line, but you could also calculate pressure. And the pressure is what we're looking for. So first is we will enter a new page.",
+   "rms": 0.1056
+  },
+  {
+   "start": 560,
+   "end": 588,
+   "text": "And if you're a new user, you will not have this sign-out option instead. You will have the sign-in option. And then you will need to have some information, your name, and your email address, and things like that. But once you have done that, you will enter this section. And the first thing you do then",
+   "rms": 0.1166
+  },
+  {
+   "start": 588,
+   "end": 616,
+   "text": "If you want to calculate the pressure drop, it's the press in your project. And you need to name it so we could just call it Movedic. And create. And then you will see a page where we on the left side have a lot of fields that we could fill in information in. And on the right",
+   "rms": 0.1052
+  },
+  {
+   "start": 616,
+   "end": 644,
+   "text": "we will see the results of these collections. So if we were to start with the example that we had with the single house, we could start from what we know or what we decide. So the first thing that we are feeling in is information about the collector.",
+   "rms": 0.0986
+  },
+  {
+   "start": 644,
+   "end": 672,
+   "text": "So we need to know the length of the collector, the diameter of the collector, if it's as your 17 or 11 and the number of bottles. So in this example, we could decide that this borehole is 200 meter long, then we just sort of fill in 200 here. Let's say it's a 40 millimeter collection",
+   "rms": 0.1096
+  },
+  {
+   "start": 672,
+   "end": 700,
+   "text": "It could be a smooth collector, so we are clicking out this turbo collector box. It's a CR17, and we only have one of these four holes. So now we are building this section. The next section is horizontal pipes, and we need",
+   "rms": 0.0921
+  },
+  {
+   "start": 700,
+   "end": 728,
+   "text": "need to know the same information here. So let's say that this distance is 10 meters. So we are putting in 10 meters. We are choosing the 40 millimeter collector and it's also as you are 17 pipe. Now we have a section here that is talking about the main pipe, the connection between the",
+   "rms": 0.1073
+  },
+  {
+   "start": 728,
+   "end": 756,
+   "text": "but in a simple installation like this we don't have any manifold and we don't have any main pipe so we really ask remove that length so it's nothing. And in the last section here we need to put in what flow rate we are having in our system.",
+   "rms": 0.108
+  },
+  {
+   "start": 756,
+   "end": 784,
+   "text": "So let's say we have one little per second and we need to select the fluid. The most common in Sweden is 28% ethanol, so let's choose that one. And by now we have got some information on the right side. First we have this curve that popped up and this is showing",
+   "rms": 0.1019
+  },
+  {
+   "start": 784,
+   "end": 812,
+   "text": "the pressure drop at the different flow rates. The green arrow is pointing at one little per second that we chose. And we could also see how much pressure drop is at one little per second. So in this case, we have 250 kilopascal of pressure drop in this system.",
+   "rms": 0.098
+  },
+  {
+   "start": 812,
+   "end": 840,
+   "text": "Below the graph we can see how much flow we have in each collector. We could see the Reynolds number within the collectors and also the total meter of borehole that we have. So right now we have calculated the pressure drop of a system like this.",
+   "rms": 0.1071
+  },
+  {
+   "start": 840,
+   "end": 868,
+   "text": "And in this hypothetical case was 250 kilopascals. So let's make it a little bit more complicated and add another borehole. Now is the first question here. What happens to the pressure drop if we add another borehole? All things as dimensions flow rate.",
+   "rms": 0.1033
+  },
+  {
+   "start": 868,
+   "end": 896,
+   "text": "It's the same. Does anybody there to make a guess? Marco, you could be the moderator and maybe choose somebody. I think Carolos is pretty smart. He knows what happens.",
+   "rms": 0.0819
+  },
+  {
+   "start": 896,
+   "end": 924,
+   "text": "OK, no answers. I have just entered in the meeting. But I think that pressure drop is higher if we had another role.",
+   "rms": 0.0741
+  },
+  {
+   "start": 924,
+   "end": 952,
+   "text": "Okay, so just let us check. So we're going back to the calculation tool and instead of one borrow, we are making it two boroughs. And then we could see that the pressure of did and decrease but were much lower. The reason for this is that we",
+   "rms": 0.0977
+  },
+  {
+   "start": 952,
+   "end": 980,
+   "text": "still have one liter per second in the system, but now we have two boroughs, so that means that the flow for each of the boroughs will be half. Since we have less flow rate in the pipes, we will have less friction and therefore less pressure growth.",
+   "rms": 0.1031
+  },
+  {
+   "start": 980,
+   "end": 1008,
+   "text": "So basically now we have calculated the pressure drop for a system with two bottles and it was less than half of the pressure drop of the one bottle if we had the same total flow rate. Okay, so making it a bit more complicated, what happens if we",
+   "rms": 0.0964
+  },
+  {
+   "start": 1008,
+   "end": 1036,
+   "text": "one of the boroughs were only half of the length. And again, we are saying that all things is the same with dimensions of flow rates etc. Somebody as I guess? No? Okay.",
+   "rms": 0.0791
+  },
+  {
+   "start": 1036,
+   "end": 1064,
+   "text": "in my case like this is that things this section is much shorter and we have the same dimensions. The friction in this section will be less. The water does not need to travel as long as it has to do in this world. That means that the pressure drop will be lower in this part than in",
+   "rms": 0.0893
+  },
+  {
+   "start": 1064,
+   "end": 1092,
+   "text": "the longer part and therefore more fluid where the flow rate will increase in the short borehole and decrease in the longer borehole. And this is creating unwanted situation because that means that we are shifting the energy outtake. It will no longer be equal between the boreholes.",
+   "rms": 0.1075
+  },
+  {
+   "start": 1092,
+   "end": 1120,
+   "text": "And in fact, we will take more heat from the short boil than we do from the long boil. And this is something that we would like to avoid. And therefore, in our manifolds, we are installing balancing valves. And if we were to install a balancing valve in this short boil, we would need to",
+   "rms": 0.1126
+  },
+  {
+   "start": 1120,
+   "end": 1148,
+   "text": "we close the valve more and more and more until we have added enough pressure drop so that it will be equal to the pressure drop. That it would be for the missing pipe in this section. So that means that by adding more and more pressure drop in the balancing valve, it will eventually be",
+   "rms": 0.1042
+  },
+  {
+   "start": 1148,
+   "end": 1176,
+   "text": "the same as it was in this leg. And that also mean that the pressure drop in that case would be the same as if the borehole were the same size. This is important to understand. The pressure drop in a system that looks like this",
+   "rms": 0.0895
+  },
+  {
+   "start": 1176,
+   "end": 1204,
+   "text": "with a balancing valve will be the same as if all boroughs were the same length. And this also tells us that when we are doing these calculations, we only need to find the flow or the part of the boroughs",
+   "rms": 0.0958
+  },
+  {
+   "start": 1204,
+   "end": 1232,
+   "text": "that has the highest pressure drop. We find the borrower which adds most pressure drop, that will be the pressure drop that we've designed the system for. Because all the other borrower that has less pressure drop, we will add a balancing valve and increase the pressure drop until it's the same as the borrower that has the most pressure drop.",
+   "rms": 0.1082
+  },
+  {
+   "start": 1232,
+   "end": 1260,
+   "text": "Okay, so we're going to the next slide. And then we have a system with two boroughs. In this case, they are the same length, but one of the boroughs is much further away. So how could we calculate the pressure drop in this system? Like I said, yes,",
+   "rms": 0.0902
+  },
+  {
+   "start": 1260,
+   "end": 1288,
+   "text": "second ago, we only need to find the borehole that has the highest pressure drop. And since they are the same size and same length, there will be no difference in the borehole themselves. But one of them is much further away. So we could see that this section should have more pressure drop.",
+   "rms": 0.1
+  },
+  {
+   "start": 1288,
+   "end": 1316,
+   "text": "And in the first slide we estimated this length to be 10 meters. So let's say that the longer section here is 100 meters. And we go back to the pressure of calculator and go down here. And instead of 10 meter horizontal pipe, we put in 100 meters.",
+   "rms": 0.104
+  },
+  {
+   "start": 1316,
+   "end": 1344,
+   "text": "I will see nothing that's strange. Put one more hole down it. Oh, sorry, it was two balls like that. Then we will see that pressure has increased compared to when we just had ten meters because we",
+   "rms": 0.091
+  },
+  {
+   "start": 1344,
+   "end": 1372,
+   "text": "adding more friction, we're adding more pressure. Good. The next picture, we have made it a little bit more complicated or maybe a bit more smarter. So instead of having two boroughs that individually go to the house, we have put two",
+   "rms": 0.0967
+  },
+  {
+   "start": 1372,
+   "end": 1400,
+   "text": "that goes into a manifold chamber and from the manifold chamber we only have two pipes going to the house. One is the floor and one is the return. How do we calculate this one? First of all we see that this section here it's no longer going all the way to the house.",
+   "rms": 0.1047
+  },
+  {
+   "start": 1400,
+   "end": 1428,
+   "text": "So maybe it's going half of the way. And then we could reduce this horizontal. Instead of 100, let's put 50. But then we also have these two pipes coming. And we need to add them to the main pipe. So now we have also 50 meter of main pipe.",
+   "rms": 0.0984
+  },
+  {
+   "start": 1428,
+   "end": 1456,
+   "text": "We also saw earlier that we had 0.5 liters per second coming from each of the boroughs. So that means that we will have one liter per second coming in the main pipes. So not to increase the pressure drop too much, we would need to have a larger diameter on the main pipes compared to what we have in the boroughs.",
+   "rms": 0.115
+  },
+  {
+   "start": 1456,
+   "end": 1484,
+   "text": "So let's put something here that's larger than 40th least. You could choose 75mm, could be reasonable. Then we could see that pressure drop has once again decreased a bit. We are now at 98kg. Good.",
+   "rms": 0.0934
+  },
+  {
+   "start": 1484,
+   "end": 1512,
+   "text": "So, how do we know what type to recommend? Is this a good system that we have calculated or not? And to be honest with that, we need to know what are the limits of the system. And normally, we get this information from the consumer.",
+   "rms": 0.0937
+  },
+  {
+   "start": 1512,
+   "end": 1540,
+   "text": "or as in this case we could find it in the product datasheet of the heat pump that is used in the system. This table here is from NEEDBER and the different columns are for different heat pumps and the one to the right. We could see that now it's in Swedish but here it says",
+   "rms": 0.1072
+  },
+  {
+   "start": 1540,
+   "end": 1568,
+   "text": "the nominal flow, liters per second, and the pump wants to have 3.1 liters per second. And the external available pressure at the nominal flow rate is 65 kilowatt-scaled. And this is actually the pump or the heat pump that goes together.",
+   "rms": 0.1007
+  },
+  {
+   "start": 1568,
+   "end": 1596,
+   "text": "with this circulation pump that I showed in the beginning. So if we take a look at here at 3.1 liter per second and goes up until we hit this red line, we could see that it's showing about 65 kiloplastions. So this is how it works.",
+   "rms": 0.0999
+  },
+  {
+   "start": 1596,
+   "end": 1624,
+   "text": "The system that we calculated here is just with one borrow, the heat pump that was showed needed more borrow. It's a large heat pump. But let's say we had a similar situation here that we had a heat pump that could cope with about 65 kilopus gram.",
+   "rms": 0.1019
+  },
+  {
+   "start": 1624,
+   "end": 1652,
+   "text": "how do we recommend what the user should need? We can clearly see now that we are above 65 kilopascal impression drop, so we need to change something. This is way is just to see what happens if we increase the diameter of the probes. If we put 45 instead, we could see that it",
+   "rms": 0.11
+  },
+  {
+   "start": 1652,
+   "end": 1680,
+   "text": "drops a lot. We could change it to 45 in the horizontal section at least also. And now we are below, we are actually at 59 kilopascal. So that means that this system would work and it would be much better than with a 40 millimeter. It could also be that we are",
+   "rms": 0.0995
+  },
+  {
+   "start": 1680,
+   "end": 1708,
+   "text": "going too high. If we were to recommend 50 millimeter instead, we could see that the pressure drop would be much lower. But we could also say that the Reynolds number would drop below 2300. And that means that we would now have much worse bore over resistance.",
+   "rms": 0.1067
+  },
+  {
+   "start": 1708,
+   "end": 1736,
+   "text": "So the system wouldn't work as well. But then we have this option here to choose turbo collector. Then we could see that it once again turns green. This is because of the fact that we are the turbo collector could handle Reynolds number down to 1,800 before the",
+   "rms": 0.0974
+  },
+  {
+   "start": 1736,
+   "end": 1764,
+   "text": "and now I would like to show something else. Another example here, I named it Klemot system. And the reason for that is, two days ago, me and Mark had a short meeting where we just went through what we would like to do.",
+   "rms": 0.0941
+  },
+  {
+   "start": 1764,
+   "end": 1792,
+   "text": "show. And when we were making these slides, there were these small consultant calling me, unknown number on the phone. And he said that I have a system. I think I got it right. But I would just like to check with you if the dimensions is reasonable.",
+   "rms": 0.1121
+  },
+  {
+   "start": 1792,
+   "end": 1820,
+   "text": "He said that it's a borehole system. Each of the boreholes are 250 meters deep. I'm thinking of using 40 millimeter pipes in as they are 17. Oops. I will use a manifold and from the manifold to the boreholes it will only",
+   "rms": 0.0992
+  },
+  {
+   "start": 1820,
+   "end": 1848,
+   "text": "be 10 meters and I would like to have 40 there as well. Then going from the manifold into the house it's about 50 meters and I'm thinking of using a 110 millimeter main pipe. And for this system, he was actually using these two pumps that's to",
+   "rms": 0.1055
+  },
+  {
+   "start": 1848,
+   "end": 1876,
+   "text": "So one of the hit pump were using 2.09 liters per second and the other one is 3.1. And when both of these are running together, then we would need 5.19 if you have these two numbers together. And this is what we inserted here as the flow rate, 5.19.",
+   "rms": 0.109
+  },
+  {
+   "start": 1876,
+   "end": 1904,
+   "text": "It also says that the available pressure drop is a bit different between these two boroughs heat pumps. That is when you add two different circulation pumps together it's a little bit more complicated to calculate. So we decided that we were aiming for the 65 kilopascal pressure.",
+   "rms": 0.105
+  },
+  {
+   "start": 1904,
+   "end": 1932,
+   "text": "we didn't want to be above 65 kilopascal. Once I've entered the system that he explained, we could see that the pressure drop was 159, so that's quite far from the 65 kilopascal that the heat pump could handle. And he immediately realized that this",
+   "rms": 0.1056
+  },
+  {
+   "start": 1932,
+   "end": 1960,
+   "text": "have been a bare system and we need to change something. So I put in the 50 millimeter instead, then we saw that the pressure drop went down to below 65 and it was at least actually we were calculating with a smooth but the pressure drop is still the same.",
+   "rms": 0.096
+  },
+  {
+   "start": 1960,
+   "end": 1988,
+   "text": "He thanked me and would like to go with the 50. But before saying goodbye, I told him that, but now we are calculating on the heat load of the system. So this is basically the coldest day of the year when both heat pumps are running at the same time. And in the majority of the days,",
+   "rms": 0.1104
+  },
+  {
+   "start": 1988,
+   "end": 2016,
+   "text": "in the year, they will not run at 100%. And that means that the flow rate will be lower. And as soon as you drop below 4.1, it leaves you to second. You will have a laminar flow rate, and therefore also higher borehole resistance. So if you were to choose the turbo collector, you could go as low as 3.2.",
+   "rms": 0.1179
+  },
+  {
+   "start": 2016,
+   "end": 2044,
+   "text": "three liters per second and still have a better heat transfer. And he said, yeah, why not let's go with the turbo collector. This phone call, I actually checked in my phone afterwards. It took nine minutes. The entire conversation was nine minutes. And the result of that was that the customer is getting",
+   "rms": 0.1035
+  },
+  {
+   "start": 2044,
+   "end": 2072,
+   "text": "a much better system that actually works. The contribution margin, if we for only the borehole heat exchanger or the collectors, if he were to choose the smooth 40 would have been 21,000 for more detect. But now when he instead choose the 50 millimeter turbo,",
+   "rms": 0.1141
+  },
+  {
+   "start": 2072,
+   "end": 2100,
+   "text": "that increased to 42,000, so actually doubled our profits and the customer got a system that worked. And I think this is a good example on how we could use this as a marketing tool and to increase our revenue and margins.",
+   "rms": 0.1018
+  },
+  {
+   "start": 2100,
+   "end": 2128,
+   "text": "Good. And then we also had some topics that we should talk about. This is the single versus the double collectors. Yesterday for those who listened to Sing Hill, she said that the double collector could be could",
+   "rms": 0.0934
+  },
+  {
+   "start": 2128,
+   "end": 2156,
+   "text": "have half as much overall as a single collector. And that is two. And that is also basically what we are showing in this graph here. Here we are comparing the single turbo 45, single turbo 40 and the double smooth 32. And the green line here is the double",
+   "rms": 0.1024
+  },
+  {
+   "start": 2156,
+   "end": 2184,
+   "text": "and we could see that indeed it has the lowest borehole thermal resistance but it needs to have a quite high flow rate before it becomes turbulent and then we get this low borehole resistance. And before we get this flow rate we could see that the other two options",
+   "rms": 0.105
+  },
+  {
+   "start": 2184,
+   "end": 2212,
+   "text": "the 45 single is actually lower in the borrowers' thus. So to be able to reach this good performing double collector, we actually need to meet some parameters otherwise it will actually be worse than a single. And yes, for the sake of",
+   "rms": 0.1038
+  },
+  {
+   "start": 2212,
+   "end": 2240,
+   "text": "we could play around a little bit with calculation tool and why didn't I recommend double 32 to this customer calling. So we could just see what happens if I put 32 here instead of 50. That also means that I no longer have eight loops.",
+   "rms": 0.1006
+  },
+  {
+   "start": 2240,
+   "end": 2268,
+   "text": "instead I have 16 loops. And then we could see that the Reynolds number is still good. It's 2248. So it works with the turbo collector. But if I click out the turbo, we are in a laminar state. So it doesn't really perform.",
+   "rms": 0.0946
+  },
+  {
+   "start": 2268,
+   "end": 2296,
+   "text": "pressure drop if we were to use turbo it's really high, even without the turbo, even if it's a laminar flow rate it's higher than the heat pump could handle. So it would simply not work in this case. Now I know that in the Scandinavian countries or in",
+   "rms": 0.1003
+  },
+  {
+   "start": 2296,
+   "end": 2324,
+   "text": "in the Nordics, we very seldom use four times 32 because we're drilling quite deep, which is not the case in many other countries. So let's make it more realistic for other parts of Europe. So let's say instead of drilling 250, we only drill half of that 125. But to be able to",
+   "rms": 0.1135
+  },
+  {
+   "start": 2324,
+   "end": 2352,
+   "text": "have the same amount of total borehole meters, then we also need to double the number of boreholes. That means that we're going up to 32. And then we could see that the pressure drop is really low, but also the Reynolds number.",
+   "rms": 0.0974
+  },
+  {
+   "start": 2352,
+   "end": 2380,
+   "text": "Since we are dividing the flow into so many different loops, the Reynolds number gets really low. It doesn't matter if we choose to do it or not, it's still way too low. And yes, for sake of it, I should have used S011 instead, which is most common, but it doesn't really help. The Reynolds number is still too low.",
+   "rms": 0.1108
+  },
+  {
+   "start": 2380,
+   "end": 2408,
+   "text": "So what would be the best option in this case? First of all, if we use a single connector, then we need to divide this by two again. So we have 16 models and we could choose a 40 millimeter connector and we could click in the turbo.",
+   "rms": 0.0976
+  },
+  {
+   "start": 2408,
+   "end": 2436,
+   "text": "This means that we would have a quite low threshold and we would have a turbulent flow since we are above the 1,800 limit. This is exactly what this graph is showing. In this case, we are in this window here where the 4 times 32 is not",
+   "rms": 0.1067
+  },
+  {
+   "start": 2436,
+   "end": 2464,
+   "text": "and becoming turbulent, but the single loop is. That's why we have a more efficient system, four times or single loop system. And once we have made the system that",
+   "rms": 0.0948
+  },
+  {
+   "start": 2464,
+   "end": 2492,
+   "text": "we feel comfortable with and that we would like to present. We have this bottom down here. We could say download report. If you click this one, it will create PDF. So on the top, we will show the graph. We will also show all the data that we have.",
+   "rms": 0.1101
+  },
+  {
+   "start": 2492,
+   "end": 2520,
+   "text": "many kilopascal pressure drop, what is the flow in the system, etc. We will also have a material list what they need to buy to be able to install this. So in this case it would have been 16 pieces of 125 meter, 40 millimeter turbo collector.",
+   "rms": 0.1133
+  },
+  {
+   "start": 2520,
+   "end": 2548,
+   "text": "some additional things like the volume of Brian and things like that. Good. This is the end of my slides. So I will stop sharing and open up for Q&A.",
+   "rms": 0.0844
+  },
+  {
+   "start": 2548,
+   "end": 2576,
+   "text": "That was brilliant. Thank you for sharing that with us. How do we know which of our customers have logged into it? Can we get access to the projects that they are doing so that we can contact them and say, \"Hey, I believe you've got this project on the go, can we sell you all the materials forward?\" Good question. It's actually a bit funny.",
+   "rms": 0.09
+  },
+  {
+   "start": 2576,
+   "end": 2604,
+   "text": "maybe because we put this on a Swedish webpage yesterday or two days ago, Michael. We haven't marketed anything. We just put it there so that we could prepare the presentation. We just added this here under the Info Service. But for some of us,",
+   "rms": 0.1051
+  },
+  {
+   "start": 2604,
+   "end": 2632,
+   "text": "also will have this admin panel. And if I press here, I could see how many users we have. And the funny thing is that actually it's popped up a few that's outside the MoV-take organization already. So we have this UNAS VR. It is working at F-Spa-Lund and VR.",
+   "rms": 0.1059
+  },
+  {
+   "start": 2632,
+   "end": 2660,
+   "text": "HVAC consultant AB. And he has actually done seven professional calculations already. So this UNUS would be a good person to contact and see how we could do business together.",
+   "rms": 0.0957
+  },
+  {
+   "start": 2660,
+   "end": 2688,
+   "text": "So did they load up their phone number or another email? I know the email just there but the name of the company is something like that so that we can say you didn't know who that company was. I know you know, but say you didn't know how we work out a mobile. I have it in the database. So in this first version we don't work with that yet.",
+   "rms": 0.1157
+  },
+  {
+   "start": 2688,
+   "end": 2716,
+   "text": "everything so I could get out the data for each country. So you will get the email address you will have in this dashboard but if you would like more information you need to contact Michael. Good and then we have the colors. Yes, I assume that",
+   "rms": 0.0937
+  },
+  {
+   "start": 2716,
+   "end": 2744,
+   "text": "the mobile labs tour guide or probes is already implemented in the program with the diameter of 63 for instance. Yes, it is in some way. If you have this list here, it could",
+   "rms": 0.097
+  },
+  {
+   "start": 2744,
+   "end": 2772,
+   "text": "see that we both have the 55, which is more or less elliptical shape diameter and 63. This is the first version and we would like you guys to play around with it the next week before we put it in all web pages. If you see any obvious errors, then",
+   "rms": 0.1134
+  },
+  {
+   "start": 2772,
+   "end": 2800,
+   "text": "then let us know. And then we will also have an updated version somewhere in the future. So if you get comments and things like that from users, please share them with Michael so that we could collect them and see what we would like to improve. And one of the things could be that we have this option for e-turbo as well. For instance.",
+   "rms": 0.1148
+  },
+  {
+   "start": 2800,
+   "end": 2828,
+   "text": "Perfect. Thank you. Good. Any other questions? Yes. Hello. Hello. Hello. The heating pump. Perfect. That will come in the next version. Okay. Actually, we could",
+   "rms": 0.092
+  },
+  {
+   "start": 2828,
+   "end": 2856,
+   "text": "I have a click view in one of the first that we made here. Maybe that one is a bit on. So here you can see that we have taken away for this. Yeah, here you can see that we have this blue line.",
+   "rms": 0.0987
+  },
+  {
+   "start": 2856,
+   "end": 2884,
+   "text": "also and this is the pump curve. We are taking away this option to choose the heat pump and the reason for that is that I would like to contact the heat pump manufacturer first and get their permission to use the date thing in this calculation tool. So that is something that we'll pull up as soon as we have the approvals. It is actually ready but we need a date",
+   "rms": 0.1096
+  },
+  {
+   "start": 2884,
+   "end": 2912,
+   "text": "for the heat pumps. Yes. Great pipes. Could be a calculation for the right pipes. Yes, this is also something that we could add on.",
+   "rms": 0.0866
+  },
+  {
+   "start": 2912,
+   "end": 2940,
+   "text": "we get the total pressure drop of the system. What I would like to add that I realized I missed in this tool is that we could have one more section here that shows what is the pressure drop only for the collectors and only for the horizontal pipes. And we could also show what the pressure drop is per meter.",
+   "rms": 0.1124
+  },
+  {
+   "start": 2940,
+   "end": 2968,
+   "text": "So, per meter of one pipe. That is also something that could be useful and that will come in the next version. Ershimon. I have a few questions. So, first one is, do you plan the future to implement for?",
+   "rms": 0.0919
+  },
+  {
+   "start": 2968,
+   "end": 2996,
+   "text": "these software pressure drops for money food or money for chalbers. And also collectively this, do we have any additional pressure loss in the bottom parts? Or this is just calculation for a pipe? Yes. More about maybe I will want to get the answer for this first time.",
+   "rms": 0.0874
+  },
+  {
+   "start": 2996,
+   "end": 3024,
+   "text": "Yes. So in this system, this is more or less a copy of the Excel tool that we have used earlier. And in that Excel tool, we add 2.5 kilopascal as a hablown value for the U band. We know that we have some extra pressure of the U band. And we also have about 10%",
+   "rms": 0.1085
+  },
+  {
+   "start": 3024,
+   "end": 3052,
+   "text": "the modern. The 10% say the modern is due to the fact that we have some tolerance in the production of the pipes and we are calculating based on the lowest or like if we had a perfect extruded pipe but in reality it could be a thick and wall thickness and things like that.",
+   "rms": 0.1029
+  },
+  {
+   "start": 3052,
+   "end": 3080,
+   "text": "But we have some safety margin. You can say in this 10% that is covering some of these unexpected pressure drops. We don't have anything for the manifold itself. And the reason for that is basically that it would be too complicated to add. And this is something that the consultants or the companies should add themselves.",
+   "rms": 0.1042
+  },
+  {
+   "start": 3080,
+   "end": 3108,
+   "text": "KBS value for the balance principles. This is just the pipes that we're calculating. Yeah, that is good that we have some additional, let's say, some buffer about the process of pressure, because it is important, I know I've published customers, so they are always curious that we have something like that. And if we go to horizontal pipes, the place where",
+   "rms": 0.0954
+  },
+  {
+   "start": 3108,
+   "end": 3136,
+   "text": "the length of flow or flow as a return. This is a total length flow class return of just flow. Yes, flow. So just flow. Yes, just one direction. So to say, if there actually this is between the manifold and the bore only 100 meter, you're clicking 100 meter. You don't click in 200.",
+   "rms": 0.1106
+  },
+  {
+   "start": 3136,
+   "end": 3164,
+   "text": "is it worth putting a note on that there to make that a little bit clearer on that? Could you put some text on that just saying that? It's just a flow. What me and Mark were to discuss is to make one page or to gather all these information that I asked that we had the 10% saved margin, you should put in that.",
+   "rms": 0.1039
+  },
+  {
+   "start": 3164,
+   "end": 3192,
+   "text": "you want. One direction and not back and forth as well. So we have some explanation how to use it. And the last question I saw. But I know I have asked why now because for example when you have a double collector you change the numbers of boreholes also you use the things like that that if you have a single double you change",
+   "rms": 0.094
+  },
+  {
+   "start": 3192,
+   "end": 3220,
+   "text": "the number of boreholes. So it's clear for me, but it was also my question that how we can compare the single collector with a very different diameter, but I have a answer. And generally it might be good tool and it would be very, very helpful, especially that we can compare it. I mean, it's really nice and I think that it would be very helpful for everybody.",
+   "rms": 0.0999
+  },
+  {
+   "start": 3220,
+   "end": 3248,
+   "text": "that we could add Mark or maybe we could make a small note that in the next version we could just like we have the turbo clicking box here we could have our clicking box for single or double collectors and it would make it more visual and easier. Yes Carlos.",
+   "rms": 0.111
+  },
+  {
+   "start": 3248,
+   "end": 3276,
+   "text": "questions. Can I share or all of us share in the link in for instance or social media? Yes, that's welcomed but let's wait. I would encourage you guys to just play around with it for one week to see if you have you know system errors or something that we need to adjust immediately and after that we will",
+   "rms": 0.1119
+  },
+  {
+   "start": 3276,
+   "end": 3304,
+   "text": "it on all web pages and then you could market how much you would like. Okay, the second question is it means that all the installations already installed the theory fluid rate is higher than is needed because I assume that the consulta",
+   "rms": 0.1028
+  },
+  {
+   "start": 3304,
+   "end": 3332,
+   "text": "calculated the flow rate depending the laminar pipes but if they installed the turbo pipes it means that they are setting up higher flow rate that is needed.",
+   "rms": 0.0942
+  },
+  {
+   "start": 3332,
+   "end": 3360,
+   "text": "In most cases, first of all, we have one big drawback or obstacle with calculation tool. That is that we can only work with one manifold chamber. So if we go back to this picture,",
+   "rms": 0.0996
+  },
+  {
+   "start": 3360,
+   "end": 3388,
+   "text": "Let's say we have 200 boroughs with different manifold chamber all over the system with different diameters of the main pipes going back and forth between the manifolds. This is something that we can't choose here. So far,",
+   "rms": 0.1032
+  },
+  {
+   "start": 3388,
+   "end": 3416,
+   "text": "we would say that we have a restriction in how large system we could calculate. And when we have these reasonably small borrow fields, the fact that regulates what flow rate you would need in the system is basically the heat pump. So like I showed you here,",
+   "rms": 0.1049
+  },
+  {
+   "start": 3416,
+   "end": 3444,
+   "text": "This is a 60 kilowatt heat pump and it clearly states it needs 3.1 liters. No matter if it's a triple collector or a smooth or a double or whatever, it points 3.1 liters per second. So this is determining the flow rate. If you have a really large system, then sometimes the consultants build it as a",
+   "rms": 0.1006
+  },
+  {
+   "start": 3444,
+   "end": 3472,
+   "text": "unit of itself or system of itself. So they say that just the matter if we are using 60 kilowatt or 6000 kilowatts, the flow in this piping system will always be, I don't know, 30 liters per second or something like that. So it's a bit different, but so far I would say that most",
+   "rms": 0.1037
+  },
+  {
+   "start": 3472,
+   "end": 3500,
+   "text": "consultants when we're talking about sizes that we could actually use this calculation tool for. They have looked at the heat pump and seen that it will need this much flow and then they will just put it in here. If we need five liters per second and then they will try to adjust dimensions and the number of rules so that it fits.",
+   "rms": 0.1059
+  },
+  {
+   "start": 3500,
+   "end": 3528,
+   "text": "So it becomes reasonable. Okay, that's good to know. Really, really interesting. Thank you, Tim. Okay, good to know. Thank you. So I guess the easiest way Michael is",
+   "rms": 0.0706
+  },
+  {
+   "start": 3528,
+   "end": 3556,
+   "text": "For you guys to play around with this a bit, you go into a group and there you can find it under Info Service, calculation and pressure drop. So play around with it, see what you think. Let Michael know your comments and after that.",
+   "rms": 0.1073
+  },
+  {
+   "start": 3556,
+   "end": 3584,
+   "text": "we could make it public. Okay, one more question from Michael. Yes, I have the question for you because yesterday I sent you the email regarding the Reynolds number. Can we stay a bit longer and compare my calculation to your software? I would love to say yes, but I'm already one minute",
+   "rms": 0.1
+  },
+  {
+   "start": 3584,
+   "end": 3612,
+   "text": "to the next meeting. So maybe I could send you a team. I can wait a little bit longer, maybe to your responsibility on my email and then I can wait in on your answer. Yeah, and I could contact you tomorrow. Okay. Okay, great. Thank you, Kim. No problem.",
+   "rms": 0.0945
+  },
+  {
+   "start": 3612,
+   "end": 3619,
+   "text": "Good, but then I think we are done for today if nobody else",
+   "rms": 0.1098
+  }
+ ]
+}

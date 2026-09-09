@@ -1,0 +1,141 @@
+{
+ "id": "01",
+ "source": "Geothermal energy basic training part 1",
+ "language": "en",
+ "engine": "whisper-base-onnx",
+ "duration": 593.9,
+ "segments": [
+  {
+   "start": 0,
+   "end": 28,
+   "text": "So this part is a general overview of your similarity as a whole. This gives you a brief crash course or gives you an idea of what your similar energy is in a nutshell. So basically there are nine or you could argue ten basic types of your similar energy. And there are a number of the most,",
+   "rms": 0.071
+  },
+  {
+   "start": 28,
+   "end": 56,
+   "text": "shallow type that is the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil, the soil",
+   "rms": 0.0726
+  },
+  {
+   "start": 56,
+   "end": 84,
+   "text": "You can do borehole storage, the test also called. In rock, it's the same type of boreholes as for the single family house, the small system, but there are multiple boreholes in that case, and you can use it for both heating and cooling. There is the active for storage energy type, which is a storage type, which is very, very efficient if you have the right type of hydrology in the ground.",
+   "rms": 0.0642
+  },
+  {
+   "start": 84,
+   "end": 112,
+   "text": "There is also something called energy piles, which seems to be similar to the borehole heat exchangers or the borehole storage. But in this case, it's the foundation of the building, the foundation piles of a building that are used to collect heating or cooling from the ground. Those piles are typically between six and twenty meters deep and made of concrete.",
+   "rms": 0.0696
+  },
+  {
+   "start": 112,
+   "end": 140,
+   "text": "or steel, so it's a different type and it will never cover the entire heating or cooling load of a building, but it is a possibility to make use of the building foundation. The ones that I've mentioned now, they use heat from the sun. It's the sun that provides heat to the ground and the ground absorbs this heat and that is the heat.",
+   "rms": 0.0652
+  },
+  {
+   "start": 140,
+   "end": 168,
+   "text": "the main heat source. There is also a component from the center of the ground but that is rather small for this kind of application. So it's mostly solar heat. It could also be waste heat or waste cooling from buildings that are stored in the ground. Then there are the more infrastructural types of eosermal energy which is pit and cavern storage.",
+   "rms": 0.0705
+  },
+  {
+   "start": 168,
+   "end": 196,
+   "text": "and seat us, typically used in conjunction with thermal networks. So it's actively stored heating and cooling. It could be accessed heat from industrial processes, from waste heat. It could be district heating that is produced from some kind of source heating source.",
+   "rms": 0.0633
+  },
+  {
+   "start": 196,
+   "end": 224,
+   "text": "typically large scale and nothing that you use just for one single building. Then there is the exception, the special case, which is the deep your thermal systems where the component from the sun is very small. They have very deep boreholes, typically more than a kilometer deep, maybe several kilometers, and extract heat from either",
+   "rms": 0.0708
+  },
+  {
+   "start": 224,
+   "end": 252,
+   "text": "the first deep aquifers down in several kilometers depth, or they make use of fractures in the ground and extract water, heat, hot water from the rock. And that can be used, that's mostly heat from the core of the earth, could be at high temperature and is",
+   "rms": 0.0563
+  },
+  {
+   "start": 252,
+   "end": 280,
+   "text": "could be used for heating or for power production if the temperature is high enough. So that is the overview. So the uosermal energy is all this. The shallow uosermal energy is the leftmost part and the uosermal is the two to the right. And if we look at temperature ranges, we have for deep uosermal the temperature range",
+   "rms": 0.0682
+  },
+  {
+   "start": 280,
+   "end": 308,
+   "text": "between +30 about up to about 150 degrees. It could be even 300 degrees on Iceland for instance. And you could use it for heating or for power production if the temperature is high enough. For shallow, you're some of the temperatures are more modest. So you usually go down maybe to -5 as the lowest. And if you have a high temperature storage system, you could store it up to",
+   "rms": 0.0687
+  },
+  {
+   "start": 308,
+   "end": 336,
+   "text": "about 90 degrees. So that is the general temperature range that we're working with. The World Uselme Congress is a conference that is arranged every, or used to be arranged every five years and they collect international statistics on Uselme Energy use. And this is an overview of three of the conference",
+   "rms": 0.0615
+  },
+  {
+   "start": 336,
+   "end": 364,
+   "text": "statistical overviews and you can see that your surmallennagy, this includes every type of your surmallennagy, both shallow and deep for heat and for power production and for cooling and everything. And as you can see, the market has grown a lot in 10 years between 2010 and 2020. And in 2010, Sweden and",
+   "rms": 0.0686
+  },
+  {
+   "start": 364,
+   "end": 392,
+   "text": "Europe accounted for about half of the global euro-small market. But as you can see China has expanded the euro-small use a lot and now Europe accounts for about a third of the world market. And if you don't count Sweden, which is a major part of this, it's about a quarter. Europe is about a quarter. If you're not...",
+   "rms": 0.0592
+  },
+  {
+   "start": 392,
+   "end": 420,
+   "text": "groups we do for some reason. So that's the world's statistics. The latest European statistics were collected last fall for the European USM Congress and here is the results from the European USM Championships 2024. So by the end of 2024 the European Masters",
+   "rms": 0.0749
+  },
+  {
+   "start": 420,
+   "end": 448,
+   "text": "of your thermal energy production was Turkey or Turkey, which they prefer to be called now. But as you can see, the blue part here represents the ground source heat pump part of the energy. And Turkey does not have very much of that, but they have a lot of direct heat and power production due to the high temperature in their ground.",
+   "rms": 0.0667
+  },
+  {
+   "start": 448,
+   "end": 476,
+   "text": "or a tectonically active area in Turkey. And that is why they can make use of these deep, useful sources. But if you look at the ground source heat pump representation, Sweden is the European champion and has been so for a very long time. Here is a map of Europe that I've made from the European Union of some of Congress statistics.",
+   "rms": 0.0686
+  },
+  {
+   "start": 476,
+   "end": 504,
+   "text": "And the darker the color, the more installations of ground source heat pumps there are in that country. So you can see Sweden is by far the most densely installed ground source heat pump country in Europe. And to the left you can see the share of the total number of",
+   "rms": 0.0626
+  },
+  {
+   "start": 504,
+   "end": 532,
+   "text": "installed grounds or seat pumps in Europe for each country. Sweden is leading with 28% of the facilities, grounds or seat pump installations in Europe, followed by Germany at 20 and then France, Finland, Netherlands, Poland and Norway, Denmark, UK and Belgium, Spain, don't yet represent such a large share of the market.",
+   "rms": 0.0619
+  },
+  {
+   "start": 532,
+   "end": 560,
+   "text": "but who knows what the future holds. So to sum up this part, there are nine basic thermal energy technologies. The shallow thermal temperature range goes from about minus five up to about plus 90 for the high temperature storage applications. The deep thermal resources, temperatures to be",
+   "rms": 0.065
+  },
+  {
+   "start": 560,
+   "end": 588,
+   "text": "quickly start at 8 degrees and then go up to beyond 150 degrees. Your thermal energy market is growing rapidly worldwide and I would say I didn't mention this earlier but it's the ground-source heat pump market that actually grows fastest. Turkey is currently the European leader in your thermal direct heat and power production.",
+   "rms": 0.0691
+  },
+  {
+   "start": 588,
+   "end": 593,
+   "text": "but Sweden is the European ground source heat pump, the champion so far.",
+   "rms": 0.0466
+  }
+ ]
+}

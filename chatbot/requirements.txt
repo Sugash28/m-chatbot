@@ -1,0 +1,5 @@
+chromadb
+anthropic
+streamlit
+sentence-transformers
+python-dotenv

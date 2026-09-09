@@ -1,0 +1,177 @@
+{
+ "id": "03",
+ "source": "Geothermal energy basic training part 3",
+ "language": "en",
+ "engine": "whisper-base-onnx",
+ "duration": 772.5,
+ "segments": [
+  {
+   "start": 0,
+   "end": 28,
+   "text": "And now we move on to the third look where we will discuss the borehole heat exchanger. So here is a picture of a borehole. The borehole basically consists of a drilled hole in the ground and inside it there is some kind of filling material.",
+   "rms": 0.0679
+  },
+  {
+   "start": 28,
+   "end": 56,
+   "text": "called the grout, which is a solid material, or it could be water, which in the Nordic countries it would be water mostly. The upper part of the borehole has a steel casing, at least it does in the Scandinavian countries, but it's possible that in some countries the steel casing is not necessary when you fill the material at the borehole.",
+   "rms": 0.0648
+  },
+  {
+   "start": 56,
+   "end": 84,
+   "text": "with the grout, then you may remove the steel casing. There is a borehole heat exchanger, the piping inside it, and I've written BHEX here. It is short for borehole heat exchangers, and why I do that is because it's the most common term for internationally for the borehole heat exchanger. But there are other terms used too. I've listed them to the left.",
+   "rms": 0.0754
+  },
+  {
+   "start": 84,
+   "end": 112,
+   "text": "one word when term that's used sometimes is a thermal probe. Another term that is used maybe mostly in the Scandinavian countries is a collector because it collects it from the ground. And then you could also use them even more general term ground heat exchangers. And B-H-E-X or B-H-E is typically short for borne heat exchanger while G-H-E-X or G-H-E.",
+   "rms": 0.0711
+  },
+  {
+   "start": 112,
+   "end": 140,
+   "text": "is short for ground heat exchanger. Right, so the borehole heat exchanger, which is the term that I will mostly use here in this presentation, it has a bottom weight at the bottom of it and that is to pull it down into the borehole and keep it there. Otherwise, it's very difficult to insert a borehole heat exchanger in the ground.",
+   "rms": 0.0633
+  },
+  {
+   "start": 140,
+   "end": 168,
+   "text": "There will be a well-top that seals it from the well so that they won't fall things into it. I've also written out the ground, understood ground temperature, the thermal conductivity of the ground and the soil above the overburden, above the hard rock, or solid rock.",
+   "rms": 0.06
+  },
+  {
+   "start": 168,
+   "end": 196,
+   "text": "So we have three basic borehole heat exchanger types. There are variations of them, but these are the three basic types. There is open type, which is just the rule borehole with some piping in it. The piping could be different, but basically it's just the borehole and piping pipes. We're not going to discuss this.",
+   "rms": 0.0679
+  },
+  {
+   "start": 196,
+   "end": 224,
+   "text": "much more in this course state, but it exists. So that's for agriphers, for groundwater, etc. So we're more interested in the closed systems, which are the absolutely most common types. Of the closed warholed exchange of your types, there are two major types. One is the U-pipe, and the other one is the co-actual. The U-pipe has a channel down, a channel down,",
+   "rms": 0.0695
+  },
+  {
+   "start": 224,
+   "end": 252,
+   "text": "up and then you bend at the bottom. The coaxial type has a central pipe and an outer channel so it's two different flow paths and of these the U-pipe is by far the most common type. I'll tell you why in momentarily. So if we take a look at these types of",
+   "rms": 0.0649
+  },
+  {
+   "start": 252,
+   "end": 280,
+   "text": "really exchangers again. The U-pipes, most common types of U-pipes is the single U-pipes where you have one channel down and one channel up. But it's also rather common with a W-pipes which has twice as large surface area. If you have two pipes up and two pipes down, that means that you have the double flow area compared to the single U-pipes.",
+   "rms": 0.07
+  },
+  {
+   "start": 280,
+   "end": 308,
+   "text": "There are, there also exist triple U-pipes but they are not very common but they exist. I've seen them on the US market sometime. And these are by far the most common types that are used. They are very reliable. They are inexpensive to produce. They are easy to store to transform",
+   "rms": 0.0755
+  },
+  {
+   "start": 308,
+   "end": 336,
+   "text": "and to install. And very little problems when you install them or have put them in place. But there are also the accouaxial types and most common types there is the pipe in pipe. There are more experimental types too, multi chamber and multi pipe which also are called coaxial. And they are more complicated because of that they will be more.",
+   "rms": 0.0682
+  },
+  {
+   "start": 336,
+   "end": 364,
+   "text": "more expensive, more difficult to produce. Typical for the coaxial type is that although he has a sort of a simple construction, it is more difficult to store transport and install without causing damage to the borehole heat exchanger. I'll mention that.",
+   "rms": 0.0643
+  },
+  {
+   "start": 364,
+   "end": 392,
+   "text": "So now having said that, now I've already marketed the U-pipe as the best type, but the coaxial exists. So why does the coaxial type exist if it's not good, if it's not so much better with the U-pipes? Yes. That has to do with something called the thermal resistance. And the thermal resistance is a resistance, a heat resistance, that",
+   "rms": 0.0726
+  },
+  {
+   "start": 392,
+   "end": 420,
+   "text": "causes a temperature drop over the materials in a borehole heat exchanger. And this includes the material for the heat carrier fluid, the pipe material, the borehole filling materials out to the rock wall. And each of these materials cause a little temperature drop, depending on how large the",
+   "rms": 0.0713
+  },
+  {
+   "start": 420,
+   "end": 448,
+   "text": "internal thermal resistance in that particular material is. And for a single U pipe, this drop, temperature drop, depends on the fluid in the pipes, the pipe material, and all the material in the filling. So that's higher.",
+   "rms": 0.0727
+  },
+  {
+   "start": 448,
+   "end": 476,
+   "text": "This is for a single U-pipe or single U-pipe collector or heat exchanger will be higher than for a W-pipe. More or less heat exchanger because there is less filling material in the W-pipe collector. So actually the W-pipe collector will have about half the several resistance compared to the single U-pipe.",
+   "rms": 0.0703
+  },
+  {
+   "start": 476,
+   "end": 504,
+   "text": "And then when we look at the coaxial heat exchanger, that is where the thermal resistance is very, very low. In fact, it's almost 10 times lower than for the single U-pipe. And that is why it seems to attract people for developers. So they really want to use this because the temperature drop between the flu",
+   "rms": 0.0697
+  },
+  {
+   "start": 504,
+   "end": 532,
+   "text": "and the borehole wall is not what you want to have. You want that to be as small as possible. So that's why many many manufacturers are trying to develop coaxial heat exchangers. It also has a lower hydraulic loss in the flow. But the problem is you will have to pay it with",
+   "rms": 0.0637
+  },
+  {
+   "start": 532,
+   "end": 560,
+   "text": "increased cost for production, more complicated storage, transport and installations, and less reliable construction. So it's easier that they break and don't live up to expectations. Okay, so here is a highly theoretical example to illustrate the effect of the thermal resistance.",
+   "rms": 0.0624
+  },
+  {
+   "start": 560,
+   "end": 588,
+   "text": "Here is everything is the same. There is the same average fluid temperature for all three variations. It's the same heat flow over the heat, more or heat exchanger, but they have different thermal resistances. So 0.1 for the single U pipe, 0.05 for the W pipe, and 0.01 for the",
+   "rms": 0.0852
+  },
+  {
+   "start": 588,
+   "end": 616,
+   "text": "And here is what you can see. The borehole wall, the temperature drop between the fluid temperature to the borehole wall will be different for these cases because you will lose less temperature in the material. So for the single u pipe you will have a borehole temperature about 2.5, that means that you've lost 4 degrees between",
+   "rms": 0.0702
+  },
+  {
+   "start": 616,
+   "end": 644,
+   "text": "the fluid average fluid and the borehole wall. For the W pipe, the borehole wall temperature will be 0.5 degrees, which means you've lost 2 degrees, which is half of the single U pipe. And for the coaxial, what will heat exchanger, the borehole wall temperature will be minus 1.1, which is only 0.4 degrees lower than the average fluid temperature.",
+   "rms": 0.0784
+  },
+  {
+   "start": 644,
+   "end": 672,
+   "text": "only lost 0.4 degrees, which is very good. All right. So on the whole, which heat exchanger is the best? OK. So if you look from a heat transfer perspective only, the coaxial type will be the best. The open coaxial type, which has only the borough wall and a central pipe in it, will be the best from a heat transfer perspective, because the thermal resistance will be--",
+   "rms": 0.07
+  },
+  {
+   "start": 672,
+   "end": 700,
+   "text": "be almost non-existence. The second best would be the one with a green liner, the central one, the concentric one, or coaxial one with a green liner. It has a slightly higher thermal resistance, but still good from a heat transfer perspective. But if you look from a total cost perspective, the water fills single and W pipe collectors, or more heated exchanges,",
+   "rms": 0.0656
+  },
+  {
+   "start": 700,
+   "end": 728,
+   "text": "will beat almost everything because they are so reliable. They are produced in such large numbers that the production costs will be very low. They hardly ever break so you can really rely on them. They are very easy to install. It doesn't take so long to install them compared to the other types. And second best would be of course the single NW type with a",
+   "rms": 0.0687
+  },
+  {
+   "start": 728,
+   "end": 756,
+   "text": "Now the borehole filling material. But water, as I will show you later, will is a better borehole filling from a somewhat point of view and economic point of view. So to sum up, a borehole heat exchanger consists of the borehole steel casing piping bottom weight and the well top. The closed loop heat exchangers are most common. Fundamental heat exchanger types are U pipes and coaxial types.",
+   "rms": 0.0673
+  },
+  {
+   "start": 756,
+   "end": 772,
+   "text": "The borehole thermal resistance causes temperature drop between the fluid and the borehole wall, and the lower borehole thermal resistance the better. U-pipe heat exchangers are reliable and cost effective.",
+   "rms": 0.0711
+  }
+ ]
+}

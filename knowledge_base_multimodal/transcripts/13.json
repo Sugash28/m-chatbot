@@ -1,0 +1,33 @@
+{
+ "id": "13",
+ "source": "TC_final test time (narration)",
+ "language": "en",
+ "engine": "whisper-base-onnx",
+ "duration": 106.4,
+ "segments": [
+  {
+   "start": 0,
+   "end": 28,
+   "text": "In a well-designed geothermal system at maximum load, the fluid flow rate is high enough for creating fully turbulent flow. Turbulence creates good mixing of the fluid, which reduces the thermal resistance of the system, increasing the fluid temperature and increasing the performance of the heat pump. However, during a large part of the year, the system are not running maximum flow rates due to lower heating",
+   "rms": 0.0942
+  },
+  {
+   "start": 28,
+   "end": 56,
+   "text": "requirements. With a smooth probe, the flow becomes laminar with poor mixing. This is bad for the heat transfer and gives a lower fluid temperature and a lower efficiency of the heat pump. When instead using movie text patented turbo collector, the flow rates continue to be turbulent at reduced flow rates, maintaining high heat transfer, increased fluid temperature, and improved efficiency",
+   "rms": 0.0946
+  },
+  {
+   "start": 56,
+   "end": 84,
+   "text": "of the heat pump. Independent research has shown that movie tech's unique and patented fin design with alternating fin directions is creating the most optimal heat transfer. The study concludes that movie tech's turbo collector creates up to 600% increase in heat transfer. Also, there is a negligible pressure drop difference between the turbo collector and laminar probes for flow rates outside",
+   "rms": 0.0896
+  },
+  {
+   "start": 84,
+   "end": 106,
+   "text": "of Reynolds numbers 1800 to 2300. Over the 50+ years of operation, the turbo collector will improve the geothermal system and reduce the electricity consumption. Better for your wallet and better for the environment. Expect excellence.",
+   "rms": 0.0846
+  }
+ ]
+}

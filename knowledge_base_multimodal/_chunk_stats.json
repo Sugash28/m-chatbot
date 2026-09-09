@@ -1,0 +1,14 @@
+{
+ "total_chunks": 462,
+ "by_source_type": {
+  "slides": 49,
+  "video_script": 8,
+  "formulas": 2,
+  "key_facts": 4,
+  "glossary": 13,
+  "transcript": 386
+ },
+ "chunks_with_frames": 203,
+ "total_frame_links": 279,
+ "standalone_visual_chunks": 0
+}
