@@ -10,7 +10,8 @@ training-video transcripts, and 279 linked video keyframes/screenshots).
 - **Generation**: Claude API (`claude-sonnet-5`, vision-capable) — answers
   from transcript/slide text *and* the on-screen keyframes, so it can read
   numbers/settings straight off a screenshot. Needs an Anthropic API key.
-- **UI**: Streamlit chat app.
+- **UI**: Streamlit chat app, gated by a shared static password (`APP_PASSWORD`)
+  since this holds internal company material.
 
 ## Local setup
 
@@ -20,7 +21,7 @@ python -m venv .venv
 .venv/Scripts/python.exe -m pip install -r requirements.txt
 
 copy .env.example .env
-# then edit .env and set ANTHROPIC_API_KEY=sk-ant-...
+# then edit .env and set ANTHROPIC_API_KEY=sk-ant-... and APP_PASSWORD=<pick one>
 ```
 
 ```bash
@@ -49,11 +50,12 @@ needed in the cloud — just point Streamlit at the repo:
    (or app **Settings -> Secrets** once it exists) and add:
    ```toml
    ANTHROPIC_API_KEY = "sk-ant-..."
+   APP_PASSWORD = "pick-a-shared-password"
    ```
-   Streamlit exposes this both as `st.secrets["ANTHROPIC_API_KEY"]` and as
-   the `ANTHROPIC_API_KEY` environment variable, which is what `app.py`
-   reads — no code change needed. Never commit a real key to `.env` or
-   anywhere in the repo.
+   Streamlit exposes these both as `st.secrets[...]` and as environment
+   variables, which is what `app.py` reads — no code change needed. Never
+   commit real values to `.env` or anywhere in the repo. Share `APP_PASSWORD`
+   with the team out-of-band (Slack/Teams DM), not in the repo or this chat.
 5. Deploy. First load takes a bit longer while it installs
    `sentence-transformers`/`torch` and embeds 462 chunks; after that the
    collection is cached for the life of the container.
@@ -73,9 +75,10 @@ Notes specific to the cloud environment:
 
 - Swap the local Chroma DB for a hosted vector store (Azure AI Search,
   Pinecone, etc.) if you outgrow rebuilding the index per container.
-- Add lightweight auth in front of the Streamlit app (Community Cloud apps
-  are public URLs by default; use its viewer-restriction settings or an
-  internal host if this must stay company-only).
+- The static-password gate keeps out casual visitors to the public URL, but
+  isn't per-user auth (no audit trail, one shared secret). If that's ever
+  needed, layer Community Cloud's viewer-restriction (email allowlist) on
+  top, or move to an internal host with real SSO.
 - Re-run `ingest.py` (or just let `app.py` rebuild it) whenever the source
   knowledge base is refreshed — see `../knowledge_base_multimodal/README.md`
   for how `chunks.jsonl` itself is produced from the raw training material.

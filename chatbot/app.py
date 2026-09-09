@@ -67,14 +67,21 @@ def get_collection():
     return client.get_collection(name=COLLECTION_NAME, embedding_function=embed_fn)
 
 
-@st.cache_resource
-def get_anthropic_client():
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
+def get_secret(name: str):
+    """Read a secret from the environment (.env locally) or st.secrets (Streamlit
+    Community Cloud). st.secrets raises if no secrets.toml exists at all, so guard it."""
+    value = os.environ.get(name)
+    if not value:
         try:
-            api_key = st.secrets.get("ANTHROPIC_API_KEY")
+            value = st.secrets.get(name)
         except Exception:
             pass  # no secrets.toml present (e.g. local dev without cloud secrets) - fine
+    return value
+
+
+@st.cache_resource
+def get_anthropic_client():
+    api_key = get_secret("ANTHROPIC_API_KEY")
     if not api_key:
         st.error(
             "ANTHROPIC_API_KEY is not set. Locally: copy .env.example to .env and add your "
@@ -82,6 +89,33 @@ def get_anthropic_client():
         )
         st.stop()
     return Anthropic(api_key=api_key)
+
+
+def check_password() -> bool:
+    """Simple shared-password gate. Set APP_PASSWORD in .env locally, or in
+    Streamlit Community Cloud's Settings -> Secrets. Session-scoped: each
+    visitor enters it once per browser session."""
+    if st.session_state.get("authenticated"):
+        return True
+
+    correct = get_secret("APP_PASSWORD")
+    if not correct:
+        st.error(
+            "APP_PASSWORD is not set. Locally: add it to .env. On Streamlit "
+            "Community Cloud: add it under app Settings -> Secrets."
+        )
+        return False
+
+    st.title("🌍 TurboCollector Knowledge Assistant")
+    st.caption("Internal tool — enter the shared password to continue.")
+    pw = st.text_input("Password", type="password")
+    if pw:
+        if pw == correct:
+            st.session_state.authenticated = True
+            st.rerun()
+        else:
+            st.error("Incorrect password.")
+    return False
 
 
 def retrieve(collection, query: str, top_k: int = TOP_K):
@@ -161,6 +195,10 @@ def build_user_content(context: str, query: str, frames):
 
 def main():
     st.set_page_config(page_title="TurboCollector Knowledge Assistant", page_icon="🌍")
+
+    if not check_password():
+        return
+
     st.title("🌍 TurboCollector Knowledge Assistant")
     st.caption("Internal multimodal chatbot over MuoviTech's TurboCollector & geothermal training materials — answers from what was said *and* shown on screen.")
 
