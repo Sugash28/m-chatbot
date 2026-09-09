@@ -52,7 +52,15 @@ def flatten_metadata(chunk: dict) -> dict:
     return meta
 
 
-def main():
+def build_index(force: bool = False, progress=None) -> int:
+    """Build (or reuse) the persistent Chroma collection. Returns the chunk count.
+
+    If `force` is False and a collection already exists with the same chunk
+    count as chunks.jsonl, it's reused as-is (cheap no-op) - this lets app.py
+    call this on every cold start (e.g. on Streamlit Community Cloud, whose
+    filesystem is wiped on each new container) without re-embedding when the
+    DB is already there and current.
+    """
     if not CHUNKS_PATH.exists():
         raise SystemExit(f"chunks.jsonl not found at {CHUNKS_PATH}")
 
@@ -62,11 +70,17 @@ def main():
             line = line.strip()
             if line:
                 chunks.append(json.loads(line))
-    n_frames = sum(len(c.get("frames") or []) for c in chunks)
-    print(f"Loaded {len(chunks)} chunks ({n_frames} linked frames) from {CHUNKS_PATH}")
 
     client = chromadb.PersistentClient(path=str(DB_DIR))
     embed_fn = embedding_functions.SentenceTransformerEmbeddingFunction(model_name=EMBED_MODEL)
+
+    if not force:
+        try:
+            existing = client.get_collection(name=COLLECTION_NAME, embedding_function=embed_fn)
+            if existing.count() == len(chunks):
+                return existing.count()
+        except Exception:
+            pass
 
     try:
         client.delete_collection(COLLECTION_NAME)
@@ -85,9 +99,18 @@ def main():
             documents=documents[i : i + batch_size],
             metadatas=metadatas[i : i + batch_size],
         )
-        print(f"  embedded {min(i + batch_size, len(chunks))}/{len(chunks)}")
+        done = min(i + batch_size, len(chunks))
+        if progress:
+            progress(done, len(chunks))
+        else:
+            print(f"  embedded {done}/{len(chunks)}")
 
-    print(f"Done. Collection '{COLLECTION_NAME}' has {collection.count()} chunks at {DB_DIR}")
+    return collection.count()
+
+
+def main():
+    n = build_index(force=True)
+    print(f"Done. Collection '{COLLECTION_NAME}' has {n} chunks at {DB_DIR}")
 
 
 if __name__ == "__main__":

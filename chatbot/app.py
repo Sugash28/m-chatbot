@@ -19,6 +19,8 @@ from anthropic import Anthropic
 from chromadb.utils import embedding_functions
 from dotenv import load_dotenv
 
+import ingest
+
 load_dotenv()
 
 DB_DIR = Path(__file__).parent / "chroma_db"
@@ -55,6 +57,11 @@ slide/document chunks (quality: high) or the screenshots when they cover the sam
 
 @st.cache_resource
 def get_collection():
+    # Builds the index on first run of a fresh container (e.g. Streamlit
+    # Community Cloud, whose filesystem doesn't survive a redeploy) and
+    # reuses it instantly on later runs if it's already there and current.
+    with st.spinner("Preparing knowledge base…"):
+        ingest.build_index()
     client = chromadb.PersistentClient(path=str(DB_DIR))
     embed_fn = embedding_functions.SentenceTransformerEmbeddingFunction(model_name=EMBED_MODEL)
     return client.get_collection(name=COLLECTION_NAME, embedding_function=embed_fn)
@@ -64,7 +71,15 @@ def get_collection():
 def get_anthropic_client():
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
-        st.error("ANTHROPIC_API_KEY is not set. Copy .env.example to .env and add your key.")
+        try:
+            api_key = st.secrets.get("ANTHROPIC_API_KEY")
+        except Exception:
+            pass  # no secrets.toml present (e.g. local dev without cloud secrets) - fine
+    if not api_key:
+        st.error(
+            "ANTHROPIC_API_KEY is not set. Locally: copy .env.example to .env and add your "
+            "key. On Streamlit Community Cloud: add it under app Settings -> Secrets."
+        )
         st.stop()
     return Anthropic(api_key=api_key)
 
@@ -148,10 +163,6 @@ def main():
     st.set_page_config(page_title="TurboCollector Knowledge Assistant", page_icon="🌍")
     st.title("🌍 TurboCollector Knowledge Assistant")
     st.caption("Internal multimodal chatbot over MuoviTech's TurboCollector & geothermal training materials — answers from what was said *and* shown on screen.")
-
-    if not DB_DIR.exists():
-        st.error("No knowledge base found. Run `python ingest.py` first to build the local vector DB.")
-        st.stop()
 
     collection = get_collection()
     client = get_anthropic_client()
