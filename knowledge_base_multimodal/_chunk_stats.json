@@ -1,14 +1,32 @@
 {
- "total_chunks": 462,
+ "total_chunks": 370,
  "by_source_type": {
   "slides": 49,
   "video_script": 8,
   "formulas": 2,
   "key_facts": 4,
   "glossary": 13,
-  "transcript": 386
+  "transcript": 290,
+  "visual_frame": 4
  },
- "chunks_with_frames": 203,
- "total_frame_links": 279,
- "standalone_visual_chunks": 0
+ "transcript_quality": {
+  "high": 290,
+  "low": 4
+ },
+ "clean_vtt_videos": [
+  "01",
+  "02",
+  "03",
+  "04",
+  "05",
+  "06",
+  "07",
+  "08",
+  "09",
+  "10",
+  "12",
+  "13"
+ ],
+ "chunks_with_frames": 172,
+ "frame_links": 280
 }
