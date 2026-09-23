@@ -20,7 +20,13 @@ KB_DIR = Path(__file__).parent.parent / "knowledge_base_multimodal"
 CHUNKS_PATH = KB_DIR / "chunks.jsonl"
 DB_DIR = Path(__file__).parent / "chroma_db"
 COLLECTION_NAME = "turbocollector_kb"
-EMBED_MODEL = "all-MiniLM-L6-v2"
+# Production embedding model: BAAI/bge-m3 — strong multilingual retriever (100+
+# languages, incl. Swedish/Polish), instruction-free (no query/passage prefixes).
+# First run downloads ~2.3 GB from Hugging Face, then it's cached locally.
+EMBED_MODEL = "BAAI/bge-m3"
+# bge-m3 (like most modern embedders) is trained for cosine similarity; Chroma
+# defaults to L2, so we set the collection's space explicitly.
+DISTANCE_SPACE = "cosine"
 
 
 def flatten_metadata(chunk: dict) -> dict:
@@ -77,7 +83,10 @@ def build_index(force: bool = False, progress=None) -> int:
     if not force:
         try:
             existing = client.get_collection(name=COLLECTION_NAME, embedding_function=embed_fn)
-            if existing.count() == len(chunks):
+            meta = existing.metadata or {}
+            # Reuse only if the DB is current AND was built with the same embedding
+            # model — otherwise (e.g. after a model upgrade) force a rebuild.
+            if existing.count() == len(chunks) and meta.get("embed_model") == EMBED_MODEL:
                 return existing.count()
         except Exception:
             pass
@@ -86,7 +95,11 @@ def build_index(force: bool = False, progress=None) -> int:
         client.delete_collection(COLLECTION_NAME)
     except Exception:
         pass
-    collection = client.create_collection(name=COLLECTION_NAME, embedding_function=embed_fn)
+    collection = client.create_collection(
+        name=COLLECTION_NAME,
+        embedding_function=embed_fn,
+        metadata={"hnsw:space": DISTANCE_SPACE, "embed_model": EMBED_MODEL},
+    )
 
     ids = [c["id"] for c in chunks]
     documents = [c["text"] for c in chunks]

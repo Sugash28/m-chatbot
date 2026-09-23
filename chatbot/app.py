@@ -26,10 +26,14 @@ load_dotenv()
 DB_DIR = Path(__file__).parent / "chroma_db"
 KB_DIR = Path(__file__).parent.parent / "knowledge_base_multimodal"  # holds images/
 COLLECTION_NAME = "turbocollector_kb"
-EMBED_MODEL = "all-MiniLM-L6-v2"
+EMBED_MODEL = "BAAI/bge-m3"  # must match ingest.py (multilingual production retriever)
+RERANK_MODEL = "BAAI/bge-reranker-v2-m3"  # multilingual cross-encoder reranker
 CLAUDE_MODEL = "claude-sonnet-5"
-TOP_K = 6
-MAX_IMAGES = 6  # cap screenshots sent to the model per question
+CANDIDATE_K = 20   # dense-retrieval candidates fed to the reranker
+TOP_K = 6          # chunks kept after reranking and sent to Claude
+MIN_RERANK_SCORE = 0.01  # drop candidates below this relevance (keeps >= MIN_KEEP)
+MIN_KEEP = 3       # always keep at least this many, even if scores are low
+MAX_IMAGES = 4     # cap screenshots sent to Claude (token/latency budget)
 
 SYSTEM_PROMPT = """You are the internal knowledge assistant for MuoviTech, answering \
 employee questions about the TurboCollector product and geothermal energy, based on \
@@ -84,6 +88,15 @@ def get_collection():
     return client.get_collection(name=COLLECTION_NAME, embedding_function=embed_fn)
 
 
+@st.cache_resource
+def get_reranker():
+    """Cross-encoder reranker (loaded once). Scores each (query, chunk) pair by
+    reading them together, which is far more precise than embedding similarity."""
+    from sentence_transformers import CrossEncoder
+    with st.spinner("Loading reranker…"):
+        return CrossEncoder(RERANK_MODEL)
+
+
 def get_secret(name: str):
     """Read a secret from the environment (.env locally) or st.secrets (Streamlit
     Community Cloud). st.secrets raises if no secrets.toml exists at all, so guard it."""
@@ -135,12 +148,31 @@ def check_password() -> bool:
     return False
 
 
-def retrieve(collection, query: str, top_k: int = TOP_K):
-    results = collection.query(query_texts=[query], n_results=top_k)
+def retrieve(collection, query: str, n: int = CANDIDATE_K):
+    """Dense retrieval: pull a wider candidate set for the reranker to sift."""
+    results = collection.query(query_texts=[query], n_results=n)
     hits = []
     for doc, meta, dist in zip(results["documents"][0], results["metadatas"][0], results["distances"][0]):
         hits.append({"text": doc, "meta": meta, "distance": dist})
     return hits
+
+
+def rerank(query: str, hits, top_k: int = TOP_K):
+    """Reorder candidates with the cross-encoder and keep the best `top_k`.
+    Low-relevance chunks are dropped (beyond MIN_KEEP) so we don't pad Claude's
+    context with noise — fewer, better chunks = faster and more accurate."""
+    if not hits:
+        return hits
+    import math
+    ce = get_reranker()
+    scores = ce.predict([(query, h["text"]) for h in hits])
+    for h, s in zip(hits, scores):
+        h["rerank_score"] = 1.0 / (1.0 + math.exp(-float(s)))  # sigmoid -> 0..1
+    hits.sort(key=lambda h: h["rerank_score"], reverse=True)
+    kept = [h for h in hits[:top_k] if h["rerank_score"] >= MIN_RERANK_SCORE]
+    if len(kept) < MIN_KEEP:
+        kept = hits[:MIN_KEEP]
+    return kept
 
 
 def format_context(hits) -> str:
@@ -195,6 +227,20 @@ def image_block(path: Path):
     return {"type": "image", "source": {"type": "base64", "media_type": "image/jpeg", "data": data}}
 
 
+def stream_answer(client, history, user_content):
+    """Generator of text chunks from Claude's streaming response, for st.write_stream
+    (renders word-by-word in the UI as chunks arrive, instead of waiting for the
+    full response)."""
+    with client.messages.stream(
+        model=CLAUDE_MODEL,
+        max_tokens=4096,
+        system=SYSTEM_PROMPT,
+        output_config={"effort": "low"},
+        messages=history + [{"role": "user", "content": user_content}],
+    ) as stream:
+        yield from stream.text_stream
+
+
 def build_user_content(context: str, query: str, frames):
     blocks = [{"type": "text",
                "text": f"CONTEXT:\n{context}\n\nQUESTION:\n{query}"}]
@@ -245,9 +291,10 @@ def main():
     with st.chat_message("user"):
         st.markdown(query)
 
-    hits = retrieve(collection, query)
+    candidates = retrieve(collection, query)      # wide dense candidate set
+    hits = rerank(query, candidates)              # cross-encoder -> best TOP_K
     context = format_context(hits)
-    frames = collect_frames(hits)
+    frames = collect_frames(hits)                 # images only from the best chunks
 
     history = [
         {"role": m["role"], "content": m["content"]}
@@ -258,19 +305,7 @@ def main():
     user_content = build_user_content(context, query, frames)
 
     with st.chat_message("assistant"):
-        placeholder = st.empty()
-        answer = ""
-        with client.messages.stream(
-            model=CLAUDE_MODEL,
-            max_tokens=4096,
-            system=SYSTEM_PROMPT,
-            output_config={"effort": "low"},
-            messages=history + [{"role": "user", "content": user_content}],
-        ) as stream:
-            for text in stream.text_stream:
-                answer += text
-                placeholder.markdown(answer + "▌")
-        placeholder.markdown(answer)
+        answer = st.write_stream(stream_answer(client, history, user_content))
 
         if frames:
             with st.expander(f"🖼 Screens Claude looked at ({len(frames)})"):
