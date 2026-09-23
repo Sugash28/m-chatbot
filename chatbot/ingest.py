@@ -20,12 +20,12 @@ KB_DIR = Path(__file__).parent.parent / "knowledge_base_multimodal"
 CHUNKS_PATH = KB_DIR / "chunks.jsonl"
 DB_DIR = Path(__file__).parent / "chroma_db"
 COLLECTION_NAME = "turbocollector_kb"
-# Production embedding model: BAAI/bge-m3 — strong multilingual retriever (100+
-# languages, incl. Swedish/Polish), instruction-free (no query/passage prefixes).
-# First run downloads ~2.3 GB from Hugging Face, then it's cached locally.
-EMBED_MODEL = "BAAI/bge-m3"
-# bge-m3 (like most modern embedders) is trained for cosine similarity; Chroma
-# defaults to L2, so we set the collection's space explicitly.
+# Multilingual MiniLM: keeps multilingual query/document matching (50+ languages,
+# incl. Swedish/Polish) without BAAI/bge-m3's much larger scale, which isn't
+# needed at this KB's size (370 chunks) and made its reranker companion measure
+# 80+s per query on CPU-only hardware. ~118M params, already cached locally.
+EMBED_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+# Trained for cosine similarity; Chroma defaults to L2, so set it explicitly.
 DISTANCE_SPACE = "cosine"
 
 
