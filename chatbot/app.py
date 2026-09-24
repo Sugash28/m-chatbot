@@ -27,11 +27,15 @@ DB_DIR = Path(__file__).parent / "chroma_db"
 KB_DIR = Path(__file__).parent.parent / "knowledge_base_multimodal"  # holds images/
 COLLECTION_NAME = "turbocollector_kb"
 EMBED_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"  # must match ingest.py
+# Small English cross-encoder reranker (~22M params, not the 568M bge-reranker-v2-m3
+# tried earlier - that measured 80-90s/query on this CPU-only machine, unusable).
+# This one reranks 25 candidates in ~2s. English-only, but it's reranking candidates
+# already retrieved by the multilingual embedder, so non-English queries still work
+# for the dense-retrieval stage; only the reordering step is English-tuned.
+RERANK_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
 CLAUDE_MODEL = "claude-sonnet-5"
-TOP_K = 6          # chunks sent to Claude
-# No reranker: a BAAI/bge-reranker-v2-m3 cross-encoder was tried and measured at
-# 80-90s per query on this CPU-only machine (52s even with max_length capped to
-# 384) - unusable for interactive chat, and unnecessary at this corpus size.
+CANDIDATE_K = 30   # dense-retrieval candidates fed to the reranker
+TOP_K = 6          # chunks kept after reranking and sent to Claude
 MAX_IMAGES = 4     # cap screenshots sent to Claude (token/latency budget)
 
 SYSTEM_PROMPT = """You are the internal knowledge assistant for MuoviTech, answering \
@@ -87,6 +91,14 @@ def get_collection():
     return client.get_collection(name=COLLECTION_NAME, embedding_function=embed_fn)
 
 
+@st.cache_resource
+def get_reranker():
+    """Small cross-encoder reranker (loaded once)."""
+    from sentence_transformers import CrossEncoder
+    with st.spinner("Loading reranker…"):
+        return CrossEncoder(RERANK_MODEL)
+
+
 def get_secret(name: str):
     """Read a secret from the environment (.env locally) or st.secrets (Streamlit
     Community Cloud). st.secrets raises if no secrets.toml exists at all, so guard it."""
@@ -138,13 +150,25 @@ def check_password() -> bool:
     return False
 
 
-def retrieve(collection, query: str, n: int = TOP_K):
-    """Dense retrieval (bge-m3 embeddings) - the chunks sent to Claude."""
+def retrieve(collection, query: str, n: int = CANDIDATE_K):
+    """Dense retrieval: pull a wider candidate set for the reranker to sift."""
     results = collection.query(query_texts=[query], n_results=n)
     hits = []
     for doc, meta, dist in zip(results["documents"][0], results["metadatas"][0], results["distances"][0]):
         hits.append({"text": doc, "meta": meta, "distance": dist})
     return hits
+
+
+def rerank(query: str, hits, top_k: int = TOP_K):
+    """Reorder candidates with the cross-encoder and keep the best `top_k`."""
+    if not hits:
+        return hits
+    ce = get_reranker()
+    scores = ce.predict([(query, h["text"]) for h in hits])
+    for h, s in zip(hits, scores):
+        h["rerank_score"] = float(s)
+    hits.sort(key=lambda h: h["rerank_score"], reverse=True)
+    return hits[:top_k]
 
 
 def format_context(hits) -> str:
@@ -263,7 +287,8 @@ def main():
     with st.chat_message("user"):
         st.markdown(query)
 
-    hits = retrieve(collection, query)
+    candidates = retrieve(collection, query)
+    hits = rerank(query, candidates)
     context = format_context(hits)
     frames = collect_frames(hits)
 
