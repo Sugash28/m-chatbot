@@ -20,6 +20,7 @@ from chromadb.utils import embedding_functions
 from dotenv import load_dotenv
 
 import ingest
+import storage
 
 load_dotenv()
 
@@ -92,6 +93,13 @@ def get_collection():
 
 
 @st.cache_resource
+def get_db():
+    """Initialize the conversation-history SQLite DB once per process."""
+    storage.init_db()
+    return True
+
+
+@st.cache_resource
 def get_reranker():
     """Small cross-encoder reranker (loaded once)."""
     from sentence_transformers import CrossEncoder
@@ -147,6 +155,21 @@ def check_password() -> bool:
             st.rerun()
         else:
             st.error("Incorrect password.")
+    return False
+
+
+def check_username() -> bool:
+    """Ask for a display name once per session - not real auth, just enough to
+    separate each person's conversation history in the sidebar."""
+    if st.session_state.get("user_name"):
+        return True
+
+    st.title("🌍 TurboCollector Knowledge Assistant")
+    st.caption("What's your name? Used to keep your conversation history separate from your teammates'.")
+    name = st.text_input("Your name")
+    if st.button("Continue", disabled=not name.strip()):
+        st.session_state.user_name = name.strip()
+        st.rerun()
     return False
 
 
@@ -252,11 +275,48 @@ def build_user_content(context: str, query: str, frames):
     return blocks
 
 
+def render_sidebar():
+    """Past-conversations list for the current user, plus a New conversation button.
+    Clicking a conversation loads its full history (from SQLite) back into the chat."""
+    user_name = st.session_state.user_name
+    with st.sidebar:
+        st.markdown(f"**{user_name}**")
+        if st.button("➕ New conversation", use_container_width=True):
+            st.session_state.conversation_id = None
+            st.session_state.messages = []
+            st.rerun()
+
+        st.divider()
+        st.caption("Your conversations")
+        conversations = storage.list_conversations(user_name)
+        if not conversations:
+            st.caption("No conversations yet — ask something to start one.")
+        for conv in conversations:
+            is_current = conv["id"] == st.session_state.get("conversation_id")
+            cols = st.columns([5, 1])
+            label = ("📍 " if is_current else "") + (conv["title"] or "Untitled")
+            if cols[0].button(label, key=f"open-{conv['id']}", use_container_width=True):
+                st.session_state.conversation_id = conv["id"]
+                st.session_state.messages = storage.load_messages(conv["id"])
+                st.rerun()
+            if cols[1].button("🗑", key=f"del-{conv['id']}", help="Delete this conversation"):
+                storage.delete_conversation(conv["id"])
+                if is_current:
+                    st.session_state.conversation_id = None
+                    st.session_state.messages = []
+                st.rerun()
+
+
 def main():
     st.set_page_config(page_title="TurboCollector Knowledge Assistant", page_icon="🌍")
 
     if not check_password():
         return
+    if not check_username():
+        return
+
+    get_db()
+    render_sidebar()
 
     st.title("🌍 TurboCollector Knowledge Assistant")
     st.caption("Internal multimodal chatbot over MuoviTech's TurboCollector & geothermal training materials — answers from what was said *and* shown on screen.")
@@ -266,6 +326,8 @@ def main():
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
+    if "conversation_id" not in st.session_state:
+        st.session_state.conversation_id = None
 
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
@@ -283,7 +345,16 @@ def main():
     if not query:
         return
 
+    if st.session_state.conversation_id is None:
+        # New conversation - the sidebar list picks it up on the next rerun
+        # (e.g. once this turn finishes); no rerun here or we'd lose `query`,
+        # since st.chat_input() only returns a value on the run it was submitted.
+        st.session_state.conversation_id = storage.create_conversation(
+            st.session_state.user_name, title=query
+        )
+
     st.session_state.messages.append({"role": "user", "content": query})
+    storage.add_message(st.session_state.conversation_id, "user", query)
     with st.chat_message("user"):
         st.markdown(query)
 
@@ -316,6 +387,9 @@ def main():
     # store frames slimly for history re-render
     hist_frames = [{"rel": fr["rel"], "timestamp": fr["timestamp"], "source": fr["source"]} for fr in frames]
     st.session_state.messages.append({"role": "assistant", "content": answer, "sources": sources, "frames": hist_frames})
+    storage.add_message(
+        st.session_state.conversation_id, "assistant", answer, sources=sources, frames=hist_frames
+    )
 
 
 if __name__ == "__main__":
