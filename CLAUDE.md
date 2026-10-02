@@ -90,3 +90,9 @@ Pipeline, per source video:
 - Add a small eval set of real sales questions + expected sources; measure retrieval hit-rate.
 - Add lightweight auth and deploy the Streamlit app internally.
 - Improve OCR (crop to the shared-screen region of meeting recordings to cut Teams-panel noise).
+
+## Azure deployment
+
+This app is hosted in the EGR Azure subscription egr-ai-dev. Before changing anything related to hosting, models, secrets or deployment, read the context below.
+
+@docs/azure-deployment.md

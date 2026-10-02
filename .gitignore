@@ -24,3 +24,11 @@ chatbot/chroma_db/
 # Runtime conversation history (local SQLite, real user data - never commit)
 chatbot/conversations.db
 chatbot/conversations.db-*
+
+# Deployment stuff
+.terraform/
+*.tfstate
+*.tfstate.*
+tfplan
+.env
+app.zip
