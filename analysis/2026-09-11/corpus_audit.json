@@ -1,0 +1,215 @@
+{
+  "media": [
+    {
+      "file": "TC_final test time.mp4",
+      "duration_seconds": 106.38933333333334,
+      "minutes": 1.77
+    },
+    {
+      "file": "Geothermal energy basic training\\Geothermal energy basic training part 1.mp4",
+      "duration_seconds": 593.8986666666667,
+      "minutes": 9.9
+    },
+    {
+      "file": "Geothermal energy basic training\\Geothermal energy basic training part 2.mp4",
+      "duration_seconds": 759.2746666666667,
+      "minutes": 12.65
+    },
+    {
+      "file": "Geothermal energy basic training\\Geothermal energy basic training part 3.mp4",
+      "duration_seconds": 772.48,
+      "minutes": 12.87
+    },
+    {
+      "file": "Geothermal energy basic training\\Geothermal energy basic training part 4.mp4",
+      "duration_seconds": 860.48,
+      "minutes": 14.34
+    },
+    {
+      "file": "Geothermal energy basic training\\Geothermal energy basic training part 5.mp4",
+      "duration_seconds": 955.4133333333333,
+      "minutes": 15.92
+    },
+    {
+      "file": "Geothermal energy basic training\\Geothermal energy basic training part 6.mp4",
+      "duration_seconds": 714.7093333333333,
+      "minutes": 11.91
+    },
+    {
+      "file": "Geothermal energy basic training\\Geothermal energy basic training part 7.mp4",
+      "duration_seconds": 553.9626666666667,
+      "minutes": 9.23
+    },
+    {
+      "file": "Geothermal energy basic training\\Geothermal energy basic training part 8.mp4",
+      "duration_seconds": 396.096,
+      "minutes": 6.6
+    },
+    {
+      "file": "Geothermal energy basic training\\Introduction to Geothermal Energy - Basic training-20260218_130119-Meeting Recording (1).mp4",
+      "duration_seconds": 7928.448,
+      "minutes": 132.14
+    },
+    {
+      "file": "Geothermal energy basic training\\Niklas Hidman - TC Test results presentation, Q&A-20250521_101608-Meeting Recording.mp4",
+      "duration_seconds": 4008.375,
+      "minutes": 66.81
+    },
+    {
+      "file": "Geothermal energy basic training\\Nowe nagranie 8.m4a",
+      "duration_seconds": 595.0933333333334,
+      "minutes": 9.92
+    },
+    {
+      "file": "Pressure Drop app movie\\Pressure drop calculation tool and 4x32.mp4",
+      "duration_seconds": 3619.84,
+      "minutes": 60.33
+    }
+  ],
+  "sources": [
+    {
+      "source": "TurboCollector presentation.pptx",
+      "chunks": 49,
+      "words_including_OCR": 2125,
+      "spoken_words_approx": 2125,
+      "end_seconds": 0
+    },
+    {
+      "source": "Speaker and Bulletpoints.docx",
+      "chunks": 8,
+      "words_including_OCR": 375,
+      "spoken_words_approx": 375,
+      "end_seconds": 0
+    },
+    {
+      "source": "Correlations for pressure drop and heat transfer.pptx",
+      "chunks": 2,
+      "words_including_OCR": 229,
+      "spoken_words_approx": 229,
+      "end_seconds": 0
+    },
+    {
+      "source": "Geothermal energy basic training part 1 [audio/video]",
+      "chunks": 7,
+      "words_including_OCR": 1445,
+      "spoken_words_approx": 1233,
+      "end_seconds": 593
+    },
+    {
+      "source": "Geothermal energy basic training part 2 [audio/video]",
+      "chunks": 9,
+      "words_including_OCR": 2074,
+      "spoken_words_approx": 1645,
+      "end_seconds": 758
+    },
+    {
+      "source": "Geothermal energy basic training part 3 [audio/video]",
+      "chunks": 9,
+      "words_including_OCR": 1912,
+      "spoken_words_approx": 1637,
+      "end_seconds": 771
+    },
+    {
+      "source": "Geothermal energy basic training part 4 [audio/video]",
+      "chunks": 11,
+      "words_including_OCR": 2181,
+      "spoken_words_approx": 1930,
+      "end_seconds": 859
+    },
+    {
+      "source": "Geothermal energy basic training part 5 [audio/video]",
+      "chunks": 11,
+      "words_including_OCR": 2412,
+      "spoken_words_approx": 2003,
+      "end_seconds": 954
+    },
+    {
+      "source": "Geothermal energy basic training part 6 [audio/video]",
+      "chunks": 9,
+      "words_including_OCR": 1819,
+      "spoken_words_approx": 1588,
+      "end_seconds": 713
+    },
+    {
+      "source": "Geothermal energy basic training part 7 [audio/video]",
+      "chunks": 8,
+      "words_including_OCR": 1538,
+      "spoken_words_approx": 1318,
+      "end_seconds": 553
+    },
+    {
+      "source": "Geothermal energy basic training part 8 [audio/video]",
+      "chunks": 6,
+      "words_including_OCR": 1233,
+      "spoken_words_approx": 981,
+      "end_seconds": 395
+    },
+    {
+      "source": "Introduction to Geothermal Energy - Basic training (meeting recording) [audio/video]",
+      "chunks": 87,
+      "words_including_OCR": 18136,
+      "spoken_words_approx": 15894,
+      "end_seconds": 7920
+    },
+    {
+      "source": "Niklas Hidman - TC Test results presentation, Q&A (meeting recording) [audio/video]",
+      "chunks": 53,
+      "words_including_OCR": 12830,
+      "spoken_words_approx": 9582,
+      "end_seconds": 4007
+    },
+    {
+      "source": "Pressure drop calculation tool and 4x32 (demo) [audio/video]",
+      "chunks": 37,
+      "words_including_OCR": 12044,
+      "spoken_words_approx": 6617,
+      "end_seconds": 3619
+    },
+    {
+      "source": "TC_final test time (narration) [audio/video]",
+      "chunks": 2,
+      "words_including_OCR": 227,
+      "spoken_words_approx": 223,
+      "end_seconds": 106
+    },
+    {
+      "source": "Geothermal energy basic training part 1 [video frame]",
+      "chunks": 1,
+      "words_including_OCR": 11,
+      "spoken_words_approx": 11,
+      "end_seconds": 0
+    },
+    {
+      "source": "Introduction to Geothermal Energy - Basic training (meeting recording) [video frame]",
+      "chunks": 1,
+      "words_including_OCR": 25,
+      "spoken_words_approx": 25,
+      "end_seconds": 0
+    },
+    {
+      "source": "Niklas Hidman - TC Test results presentation, Q&A (meeting recording) [video frame]",
+      "chunks": 1,
+      "words_including_OCR": 26,
+      "spoken_words_approx": 26,
+      "end_seconds": 0
+    },
+    {
+      "source": "Pressure drop calculation tool and 4x32 (demo) [video frame]",
+      "chunks": 1,
+      "words_including_OCR": 23,
+      "spoken_words_approx": 23,
+      "end_seconds": 0
+    }
+  ],
+  "selected_chunks": 312,
+  "selected_types": {
+    "slides": 49,
+    "video_script": 8,
+    "formulas": 2,
+    "transcript": 249,
+    "visual_frame": 4
+  },
+  "selected_words_including_OCR": 60665,
+  "selected_video_words_including_OCR": 57936,
+  "selected_transcript_words_excluding_OCR": 44651
+}

@@ -1,0 +1,33 @@
+{
+  "date_utc": "2026-09-11T10:30:57.433403+00:00",
+  "model": "claude-opus-5",
+  "selected_chunks": 312,
+  "included_video_ids": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "12",
+    "13"
+  ],
+  "excluded_video_ids": [
+    "11",
+    "14",
+    "15"
+  ],
+  "baseline": "Initial output ended during Q12; source-free continuation completed Q12-Q18",
+  "assessment": "Initial full text/OCR corpus request ended during section2.10; remaining sections completed with all scoped speech/document text, initial report and baseline; no browsing/tools",
+  "screenshots": "Not supplied to Opus; two frames separately inspected by Codex",
+  "response_files": [
+    "opus_baseline_response.json",
+    "opus_baseline_continuation_response.json",
+    "opus_scoped_assessment_response.json",
+    "opus_remaining_assessment_response.json"
+  ]
+}
