@@ -13,18 +13,21 @@ import json
 from pathlib import Path
 
 import chromadb
-from chromadb.utils import embedding_functions
+from dotenv import load_dotenv
+
+from azure_clients import AzureFoundryEmbeddingFunction
+
+load_dotenv()
 
 # Multimodal knowledge base produced by the extraction pipeline.
 KB_DIR = Path(__file__).parent.parent / "knowledge_base_multimodal"
 CHUNKS_PATH = KB_DIR / "chunks.jsonl"
 DB_DIR = Path(__file__).parent / "chroma_db"
 COLLECTION_NAME = "turbocollector_kb"
-# Multilingual MiniLM: keeps multilingual query/document matching (50+ languages,
-# incl. Swedish/Polish) without BAAI/bge-m3's much larger scale, which isn't
-# needed at this KB's size (370 chunks) and made its reranker companion measure
-# 80+s per query on CPU-only hardware. ~118M params, already cached locally.
-EMBED_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+# Cohere embed-v-4-0 via Azure AI Foundry (multilingual, 1536-dim). Replaced the
+# local paraphrase-multilingual-MiniLM-L12-v2 model as part of the move to
+# Azure-hosted models (company's own Foundry resource: foundry-muovitech-chatbot).
+EMBED_MODEL = "azure:embed-v-4-0"
 # Trained for cosine similarity; Chroma defaults to L2, so set it explicitly.
 DISTANCE_SPACE = "cosine"
 
@@ -78,7 +81,7 @@ def build_index(force: bool = False, progress=None) -> int:
                 chunks.append(json.loads(line))
 
     client = chromadb.PersistentClient(path=str(DB_DIR))
-    embed_fn = embedding_functions.SentenceTransformerEmbeddingFunction(model_name=EMBED_MODEL)
+    embed_fn = AzureFoundryEmbeddingFunction()
 
     if not force:
         try:
