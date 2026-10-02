@@ -1,0 +1,45 @@
+# Deploys the app code to App Service on every push to main.
+# Infrastructure (infra/) is applied from the terminal, not here.
+# Requires repo variables AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_SUBSCRIPTION_ID
+# (see docs/azure-deployment.md, "Pipeline identity").
+name: deploy-app
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["infra/**", "docs/**", "*.md"]
+  workflow_dispatch:
+
+permissions:
+  id-token: write # OIDC login, no stored passwords
+  contents: read
+
+concurrency:
+  group: deploy-app
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Package (tracked files only, without infra and git history)
+        run: git archive --format=zip -o app.zip HEAD -- . ':!infra' ':!.github'
+
+      - name: Deploy to App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: app-muovitech-chatbot
+          package: app.zip
+
+      - name: Smoke test
+        run: |
+          sleep 30
+          curl -s -o /dev/null -w "HTTP %{http_code}\n" https://app-muovitech-chatbot.azurewebsites.net/
